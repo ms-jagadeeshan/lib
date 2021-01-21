@@ -19,7 +19,7 @@ public:
 
     void search(int hour_, int minute_, int day_)
     {
-        if (day == day_ && hour == hour_ && minute_<59 &&minute_>50)
+        if (day == day_ && hour == hour_ && minute_<59 &&minute_>49)
         {
             cout << link;
         }
