@@ -72,12 +72,7 @@ Go to settings
 
 <a href="https://imgur.com/V2CRvs4"><img src="https://i.imgur.com/V2CRvs4.png" title="source: imgur.com" /></a>
 
-Search keyboard shortcuts & ente
-```
-sudo apt install curl
-```
-or
-Install wget usingr
+Search keyboard shortcuts & enter
 <a href="https://imgur.com/VjNmtyy"><img src="https://i.imgur.com/VjNmtyy.png" title="source: imgur.com" /></a>
 
 Scroll down and click + 
