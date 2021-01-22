@@ -3,14 +3,14 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">My Library</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/ms-jagadeeshan/lib/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/ms-jagadeeshan/lib/pulls)
+[![License](https://camo.githubusercontent.com/ad9ce5472ad34d6dd6f4e048fa14924db6834c3c49b82715c876517624a7ed0f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4343302d626c75652e737667)](/LICENSE)
 
 </div>
 
@@ -24,91 +24,76 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
-
+This is my library functions to automate and enhance interface 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+Need curl or wget command(any one) to download the zip file.
+Make sure you already have curl or wget.If you don't have install it.
+Install curl using,
 
 ```
-Give examples
+sudo apt install curl
 ```
+or
+Install wget using
 
+```
+sudo apt install wget
+```
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+1.Download zip file from github
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
 
 ```
-until finished
+curl -LO https://github.com/ms-jagadeeshan/lib/archive/master.zip
 ```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+or
+```
+wget https://github.com/ms-jagadeeshan/lib/archive/master.zip
+```
+2.Extracte the zip.
 
 ```
-Give an example
+unzip -q master.zip -d ~ && mv lib-master lib
 ```
+#### Automatic class opener
+To create this shortcut
+Go to settings
+<img src="https://i.ibb.co/9NQmnHq/pic-1.png" alt="pic-1" border="0">
 
-### And coding style tests
+Search keyboard shortcuts
+<img src="https://i.ibb.co/PwrNfJS/pic-2.png" alt="pic-2" border="0">
 
-Explain what these tests test and why
+Scroll down and click + 
+<img src="https://i.ibb.co/Y7sBB1S/pic-3.png" alt="pic-3" border="0">
 
+1.Give shortcut name as your wish
+2.Enter this in command
 ```
-Give an example
+gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.sh "'
 ```
+3.Click set shortccut,set shortcut key as you wish
+<img src="https://i.ibb.co/P4jNpn0/pic-5.png" alt="pic-5" border="0">
+<img src="https://i.ibb.co/n6GBsgB/pic-40.png" alt="pic-40" border="0">
+Note:Set a shortcut key which is not in use already.
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+### Automatic class opener
+Just click the short cut key to open you class
 
-## 🚀 Deployment <a name = "deployment"></a>
 
-Add additional notes about how to deploy this on a live system.
-
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@ms-jagadeeshan](https://github.com/ms-jagadeeshan) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+See also the list of [contributors](https://github.com/kylelobo/ms-jagadeeshan/contributors) who participated in this project.
