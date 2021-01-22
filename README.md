@@ -48,7 +48,8 @@ Install wget using
 sudo apt install wget
 ```
 ### Installing
-
+- [Automatic class opener](#automatic_class_opener)
+- [Assignment claculator](#assignment_calculator)
 1.Download zip file from github
 
 
@@ -64,13 +65,18 @@ wget https://github.com/ms-jagadeeshan/lib/archive/master.zip
 ```
 unzip -q master.zip -d ~ && mv lib-master lib
 ```
-#### Automatic class opener
+#### Automatic class opener <a name = "automatic_class_opener"></a>
 To create this shortcut
 Go to settings
 
 <a href="https://imgur.com/V2CRvs4"><img src="https://i.imgur.com/V2CRvs4.png" title="source: imgur.com" /></a>
 
-Search keyboard shortcuts & enter
+Search keyboard shortcuts & ente
+```
+sudo apt install curl
+```
+or
+Install wget usingr
 <a href="https://imgur.com/VjNmtyy"><img src="https://i.imgur.com/VjNmtyy.png" title="source: imgur.com" /></a>
 
 Scroll down and click + 
@@ -87,7 +93,8 @@ gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.sh "'
 
 
 Note:Set a shortcut key which is not in use already.
-#### 
+#### Assignment Calculator <a> name="assignment_calculator"</a>
+
 ## 🎈 Usage <a name="usage"></a>
 
 ### Automatic class opener

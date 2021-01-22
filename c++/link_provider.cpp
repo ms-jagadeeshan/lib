@@ -25,6 +25,8 @@ public:
             {
                 cout << link;
             }
+            else
+                cout<<"noc";
         }
         else if(minute_<49)
         {
@@ -32,10 +34,10 @@ public:
         {
             cout << link;
         }
-        }
-        if (day_ == 6 && hour_ == 5 && minute_ < 35 && minute_ > 20)
-        {
-            cout<<" https://meet.google.com/xhr-jqgu-enc";
+            else
+            {
+                cout<<"noc";
+            }
         }
     }
 };
