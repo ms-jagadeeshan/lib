@@ -19,9 +19,23 @@ public:
 
     void search(int hour_, int minute_, int day_)
     {
-        if (day == day_ && hour == hour_ && minute_<59 &&minute_>49)
+        if (minute_ > 49)
+        {
+            if (day == day_ && hour == hour_)
+            {
+                cout << link;
+            }
+        }
+        else if(minute_<49)
+        {
+            if (day == day_ && hour == hour_-1 )
         {
             cout << link;
+        }
+        }
+        if (day_ == 6 && hour_ == 5 && minute_ < 35 && minute_ > 20)
+        {
+            cout<<" https://meet.google.com/xhr-jqgu-enc";
         }
     }
 };
