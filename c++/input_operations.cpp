@@ -43,10 +43,20 @@ int main()
     printf("Enter the csv file name(with extension): ");
     cin >> csv;
     FILE *inputdata = fopen("input.txt", "r");
+    if (inputdata == NULL)
+    {
+        printf("Error opening file\n");
+        exit(1);
+    }
     csvAnalyse(inputdata);
     //cout << no_of_inputs << "||" << no_of_variables;
     fclose(inputdata);
     inputdata = fopen(csv, "r");
+    if (inputdata == NULL)
+    {
+        printf("Error opening file\n");
+        exit(1);
+    }
     float data[no_of_inputs][dummy_variable];
     float result[no_of_inputs];
     getData((float *)data, inputdata);
@@ -112,6 +122,7 @@ int main()
     }
 
     printresult(result);
+    fclose(inputdata);
     return 0;
 }
 /*int getdataMenu()
@@ -190,7 +201,10 @@ int printMenu(int a)
         printf("9.Custom\n");                        //function code =>506,
         printf("Your choice(1-9):");
         cin >> option;
+        if(option<=9&&option>=1)
         function_code = local_function_code[option - 1];
+        else 
+        printMenu(a);
     };
     break;
     case 2:
@@ -209,7 +223,10 @@ int printMenu(int a)
         printf("10.Custom");                         //function code =>516,
         printf("Your choice(1-10):");
         cin >> option;
+        if(option<=10&&option>=1)
         function_code = local_function_code[option - 1];
+        else 
+        printMenu(a);
     };
     break;
     default:
@@ -224,7 +241,10 @@ int printMenu(int a)
         printf("6.Custom\n");         //function code =>517
         printf("Your choice(1-6):");
         cin >> option;
+        if(option<=6&&option>=1)
         function_code = local_function_code[option - 1];
+        else 
+        printMenu(a);
     };
     break;
     }
@@ -268,8 +288,8 @@ void multiplication(float data[][dummy_variable], float *result)
 {
     for (int i = 0; i < no_of_inputs; ++i)
     {
-        result[i] = 0;
-        for (int j = 0; j < no_of_variables; ++j)
+        result[i] = data[i][0];
+        for (int j = 1; j < no_of_variables; ++j)
         {
             result[i] *= data[i][j];
         }
