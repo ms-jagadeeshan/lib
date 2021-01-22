@@ -8,8 +8,8 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/ms-jagadeeshan/lib/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/ms-jagadeeshan/lib/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/ms-jagadeeshan/lib.svg)](https://github.com/ms-jagadeeshan/lib/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ms-jagadeeshan/lib.svg)](https://github.com/ms-jagadeeshan/lib/pulls)
 [![License](https://camo.githubusercontent.com/ad9ce5472ad34d6dd6f4e048fa14924db6834c3c49b82715c876517624a7ed0f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4343302d626c75652e737667)](/LICENSE)
 
 </div>
