@@ -66,7 +66,9 @@ unzip -q master.zip -d ~ && mv lib-master lib
 ```
 #### Automatic class opener
 To create this shortcut
+
 Go to settings
+
 <img src="https://i.ibb.co/9NQmnHq/pic-1.png" alt="pic-1" border="0">
 
 Search keyboard shortcuts
@@ -76,11 +78,12 @@ Scroll down and click +
 <img src="https://i.ibb.co/Y7sBB1S/pic-3.png" alt="pic-3" border="0">
 
 1.Give shortcut name as your wish
-2.Enter this in command
+<br>2.Enter this in command
 ```
 gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.sh "'
 ```
 3.Click set shortcut,set shortcut key as you wish
+<br>
 <img src="https://i.ibb.co/n6GBsgB/pic-40.png" alt="pic-40" border="0">
 <img src="https://i.ibb.co/P4jNpn0/pic-5.png" alt="pic-5" border="0">
 
