@@ -59,24 +59,22 @@ or
 ```
 wget https://github.com/ms-jagadeeshan/lib/archive/master.zip
 ```
-2.Extracte the zip.
+2.Extract the zip downloaded.
 
 ```
 unzip -q master.zip -d ~ && mv lib-master lib
 ```
 #### Automatic class opener
 To create this shortcut
-
 Go to settings
 
-<img src="https://i.ibb.co/9NQmnHq/pic-1.png" alt="pic-1" border="0">
+<a href="https://imgur.com/V2CRvs4"><img src="https://i.imgur.com/V2CRvs4.png" title="source: imgur.com" /></a>
 
-Search keyboard shortcuts
-<img src="https://i.ibb.co/PwrNfJS/pic-2.png" alt="pic-2" border="0">
+Search keyboard shortcuts & enter
+<a href="https://imgur.com/VjNmtyy"><img src="https://i.imgur.com/VjNmtyy.png" title="source: imgur.com" /></a>
 
 Scroll down and click + 
-<img src="https://i.ibb.co/Y7sBB1S/pic-3.png" alt="pic-3" border="0">
-
+<a href="https://imgur.com/8rbchgL"><img src="https://i.imgur.com/8rbchgL.png" title="source: imgur.com" /></a>
 1.Give shortcut name as your wish
 <br>2.Enter this in command
 ```
@@ -84,18 +82,24 @@ gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.sh "'
 ```
 3.Click set shortcut,set shortcut key as you wish
 <br>
-<img src="https://i.ibb.co/n6GBsgB/pic-40.png" alt="pic-40" border="0">
-<img src="https://i.ibb.co/P4jNpn0/pic-5.png" alt="pic-5" border="0">
+<a href="https://imgur.com/AgaPCG4"><img src="https://i.imgur.com/AgaPCG4.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/5ZnFGfP"><img src="https://i.imgur.com/5ZnFGfP.png" title="source: imgur.com" /></a>
 
 
 Note:Set a shortcut key which is not in use already.
-
+#### 
 ## 🎈 Usage <a name="usage"></a>
 
 ### Automatic class opener
-Just click the short cut key to open you class
-
-
+This program is solely for IIIDM kancheepuram students,please others don't use.
+<br>
+For batch A student the links are correct,but for Ec batch-2 students have to edit the link_provider.cpp to get correct link.
+And also edit programming practice link,(link given in link_provider.cpp is for 1-21 )
+<br>
+<a href="https://imgur.com/FNOcFC3"><img src="https://i.imgur.com/FNOcFC3.png" title="source: imgur.com" /></a>
+Others students are required to insert their link in program called link_provider.cpp
+<br>
+If you finished setting correctly,Just click the short cut key to open you class.
 
 ## ✍️ Authors <a name = "authors"></a>
 
