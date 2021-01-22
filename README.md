@@ -80,9 +80,11 @@ Scroll down and click +
 ```
 gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.sh "'
 ```
-3.Click set shortccut,set shortcut key as you wish
-<img src="https://i.ibb.co/P4jNpn0/pic-5.png" alt="pic-5" border="0">
+3.Click set shortcut,set shortcut key as you wish
 <img src="https://i.ibb.co/n6GBsgB/pic-40.png" alt="pic-40" border="0">
+<img src="https://i.ibb.co/P4jNpn0/pic-5.png" alt="pic-5" border="0">
+
+
 Note:Set a shortcut key which is not in use already.
 
 ## 🎈 Usage <a name="usage"></a>
