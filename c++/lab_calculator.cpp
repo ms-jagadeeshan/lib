@@ -40,7 +40,7 @@ void print(float *arr, int m, int n)
 int main()
 {
     char csv[15];
-    printf("Enter the csv file name(with extension): ");
+    printf("Enter the input file name(with extension): ");
     cin >> csv;
     FILE *inputdata = fopen("input.txt", "r");
     if (inputdata == NULL)
@@ -172,7 +172,7 @@ void getData(float *data, FILE *inputdata)
             if (j < no_of_variables)
             {
                 fscanf(inputdata, "%f%*c", ((data + i * dummy_variable) + j));
-                printf("%f,", *((data + i * dummy_variable) + j));
+                //printf("%f,", *((data + i * dummy_variable) + j));
             }
         }
     }
@@ -218,7 +218,7 @@ int printMenu(int a)
         printf("5.Average\n");                       //function code =>511,
         printf("6.Maximum\n");                       //function code =>512,
         printf("7.Minimum\n");                       //function code =>513,
-        printf("8.Hypotenuse\n");                    //function code =>514,
+        printf("8.Hypotenuse(sqrt(x^2 + y^2)\n");                    //function code =>514,
         printf("9.Power(x power y or y power x)\n"); //function code =>515,
         printf("10.Custom");                         //function code =>516,
         printf("Your choice(1-10):");

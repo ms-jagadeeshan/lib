@@ -3,10 +3,13 @@
 hour=$(date +%H)
 minute=$(date +%M)
 day=$(date +%w)
-Ec_batch=1
 dir="/home/$USER/lib/"
-#dir="~/lib/sh/automatic_class_joiner"
 cd
 cd $dir/c++ && g++ link_provider.cpp -o link_provider 
-link=$(./link_provider $hour $minute $day $Ec_batch)
+link=$(./link_provider $hour $minute $day)
+if [ $link=="noc" ]
+then 
+echo "Cool,You don't have any classes now"
+else
 xdg-open $link
+fi
