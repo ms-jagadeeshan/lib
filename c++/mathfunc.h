@@ -1,154 +1,16 @@
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
-#include "mathfunc.h"
 using std::cin;
 using std::cout;
 using std::string;
-//global variables
-int no_of_variables = 0;
-int no_of_inputs = 0;
-int function_code;
-/*
-void csvAnalyse(FILE *);
-void getData(float *, FILE *);
-int printMenu(int);
-void addition(float[][dummy_variable], float *);
-void printresult(float *);
-void subraction(float[][dummy_variable], float *);
-void multiplication(float[][dummy_variable], float *);
-void division(float[][dummy_variable], float *);
-void average(float[][dummy_variable], float *);
-void minimum(float[][dummy_variable], float *);
-void maximum(float[][dummy_variable], float *);
-void exponential(float[][dummy_variable], float *);
-void power_1_var(float[][dummy_variable], float *);
-void power_2_var(float[][dummy_variable], float *);
-void log_1_var(float[][dummy_variable], float *);
-void negation(float[][dummy_variable], float *);
-void square(float[][dummy_variable], float *);
-void squareroot(float[][dummy_variable], float *);
-void cuberoot(float[][dummy_variable], float *);
-void inverse(float[][dummy_variable], float *);
-void hypotenuse(float[][dummy_variable], float *);
-void sin(float *, float *);
-void print(float *arr, int m, int n)
-{
-    int i, j;
-    for (i = 0; i < m; i++)
-        for (j = 0; j < n; j++)
-            printf("%f ", *((arr + i * n) + j));
-}
-*/
-int main()
-{
-    char csv[15];
-    printf("Enter the input file name(with extension): ");
-    cin >> csv;
-    FILE *inputdata = fopen(csv, "r");
-    if (inputdata == NULL)
-    {
-        printf("Error opening file\n");
-        exit(1);
-    }
-    csvAnalyse(inputdata);
-    //cout << no_of_inputs << "||" << no_of_variables;
-    fclose(inputdata);
-    inputdata = fopen(csv, "r");
-    if (inputdata == NULL)
-    {
-        printf("Error opening file\n");
-        exit(1);
-    }
-    float data[no_of_inputs][dummy_variable];
-    float result[no_of_inputs];
-    getData((float *)data, inputdata);
-    fclose(inputdata);
-    switch (printMenu(no_of_variables))
-    {
-    case 500:
-        trignometric(data,result);
-        break;
-    case 501:
-        inverse(data, result);
-        break;
-    case 502:
-        square(data, result);
-        break;
-    case 503:
-        squareroot(data, result);
-        break;
-    case 504:
-        log_1_var(data, result);
-        break;
-    case 505:
-        power_1_var(data, result);
-        break;
-    case 518:
-        exponential(data, result);
-        break;
-    case 519:
-        negation(data, result);
-        break;
-    case 506:
-        break;
-    case 507:
-        addition(data, result);
-        break;
-    case 508:
-        subraction(data, result);
-        break;
-    case 509:
-        multiplication(data, result);
-        break;
-    case 510:
-        division(data, result);
-        break;
-    case 511:
-        average(data, result);
-        break;
-    case 512:
-        maximum(data, result);
-        break;
-    case 513:
-        minimum(data, result);
-        break;
-    case 514:
-        hypotenuse(data, result);
-        break;
-    case 515:
-        power_2_var(data, result);
-        break;
-    case 516:
-        break;
-    case 517:
-        break;
-    }
-
-    printresult(result);
-    return 0;
-}
-/*int getdataMenu()
-{
-    int option;
-    printf("Which format you want to enter?\n");
-    printf("1.CSV\n");
-    printf("2.Text(single variable)\n");
-    printf("3.From input console\n");
-    printf("4.Will be developed soon\n");
-
-    do
-    {
-        printf("Your option(1-3)....");
-        scanf("%d", &option);
-    }
-
-    while (option != 1 && option != 2 && option != 3);
-    return option;
-}*/
-/*
+extern int no_of_variables;
+extern int no_of_inputs;
+extern const int dummy_variable = 8;
+extern int function_code;
 void csvAnalyse(FILE *inputdata)
 {
-    char s[1000];
+    char s[200];
     while (fscanf(inputdata, "%s", s) == 1)
     {
         if (no_of_inputs == 0)
@@ -156,7 +18,7 @@ void csvAnalyse(FILE *inputdata)
             ++no_of_variables;
             for (int i = 0; i < 100 && s[i] != '\0'; ++i)
             {
-               // printf("s[%d]%c\n",i,s[i]);
+                // printf("s[%d]%c\n",i,s[i]);
                 if (s[i] == ',')
                 {
                     //printf("\n");
@@ -192,6 +54,8 @@ int printMenu(int a)
         break;
     case 1:
     {
+        printf("Your given data have %d inputs\n", no_of_inputs);
+        printf("And also it have %d variables\n\n", no_of_variables);
         int local_function_code[9] = {500, 501, 502, 503, 504, 505, 519, 518, 506};
         printf("What do you want?\n");
         printf("1.Trignometric\n");                  //function code =>500,
@@ -205,14 +69,16 @@ int printMenu(int a)
         printf("9.Custom\n");                        //function code =>506,
         printf("Your choice(1-9):");
         cin >> option;
-        if(option<=9&&option>=1)
-        function_code = local_function_code[option - 1];
-        else 
-        printMenu(a);
+        if (option <= 9 && option >= 1)
+            function_code = local_function_code[option - 1];
+        else
+            printMenu(a);
     };
     break;
     case 2:
     {
+        printf("Your given data have %d inputs\n", no_of_inputs);
+        printf("And also it have %d variables\n\n", no_of_variables);
         int local_function_code[10] = {507, 508, 509, 510, 511, 512, 513, 514, 515, 516};
         printf("What do you want?\n");
         printf("1.Addition\n");                      //function code =>507,
@@ -222,19 +88,21 @@ int printMenu(int a)
         printf("5.Average\n");                       //function code =>511,
         printf("6.Maximum\n");                       //function code =>512,
         printf("7.Minimum\n");                       //function code =>513,
-        printf("8.Hypotenuse(sqrt(x^2 + y^2)\n");                    //function code =>514,
+        printf("8.Hypotenuse(sqrt(x^2 + y^2)\n");    //function code =>514,
         printf("9.Power(x power y or y power x)\n"); //function code =>515,
         printf("10.Custom");                         //function code =>516,
         printf("Your choice(1-10):");
         cin >> option;
-        if(option<=10&&option>=1)
-        function_code = local_function_code[option - 1];
-        else 
-        printMenu(a);
+        if (option <= 10 && option >= 1)
+            function_code = local_function_code[option - 1];
+        else
+            printMenu(a);
     };
     break;
     default:
     {
+        printf("Your given data have %d inputs\n", no_of_inputs);
+        printf("And also it have %d variables\n\n", no_of_variables);
         int local_function_code[6] = {507, 509, 511, 512, 513, 517};
         printf("What do you want?\n");
         printf("1.Addition\n");       //function code =>507
@@ -245,10 +113,10 @@ int printMenu(int a)
         printf("6.Custom\n");         //function code =>517
         printf("Your choice(1-6):");
         cin >> option;
-        if(option<=6&&option>=1)
-        function_code = local_function_code[option - 1];
-        else 
-        printMenu(a);
+        if (option <= 6 && option >= 1)
+            function_code = local_function_code[option - 1];
+        else
+            printMenu(a);
     };
     break;
     }
@@ -310,7 +178,7 @@ void division(float data[][dummy_variable], float *result)
     if (option == 1)
     {
         for (int i = 0; i < no_of_inputs; ++i)
-            result[i] = data[i][0] -(float) data[i][1];
+            result[i] = data[i][0] - (float)data[i][1];
     }
     else if (option == 2)
     {
@@ -487,6 +355,175 @@ void hypotenuse(float data[][dummy_variable], float *result)
         result[i] = hypot(data[i][0], data[i][1]);
     }
 }
+
+void trignometric(float data[][dummy_variable], float *result)
+{
+    char option;
+    printf("\n\033[1m1.Trignometric\033[0m\n");
+    printf("What function you want?\n");
+    printf("a) sin(ϑ)\tg) arcsin()\n");
+    printf("b) cos(ϑ)\th) arccos()\n");
+    printf("c) tan(ϑ)\ti) arctan()\n");
+    printf("d) cosec(ϑ)     j) arccosec()\n");
+    printf("e) sec(ϑ)\tk) arcsec()\n");
+    printf("f) cot(ϑ)\tl) arccot()\n");
+    printf("\033[031;1mCaution: input value for arcsin,arccos should be [-1,1] and for arccosec, arcsec should not be (-1,1)\033[0m\n");
+    printf("Your option(a-l): ");
+    cin >> option;
+    switch (option)
+    {
+    case 'a':
+    {
+        char option1;
+        printf("\n\033[1ma) sin(ϑ)\033[0m\n");
+        printf("Is ϑ given in degrees(d) or radians(r)?\n");
+        printf("Your option(d or r): ");
+        cin >> option1;
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            if (option1 == 'r')
+                result[i] = sinf(data[i][0]);
+            else if (option1 == 'd')
+                result[i] = sinf(data[i][0] * M_PI / 180);
+        }
+    }
+    break;
+    case 'b':
+    {
+        char option1;
+        printf("\n\033[1mb) cos(ϑ)\033[0m\n");
+        printf("Is ϑ given in degrees(d) or radians(r)?\n");
+        printf("Your option(d or r): ");
+        cin >> option1;
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            if (option1 == 'r')
+                result[i] = cosf(data[i][0]);
+            else if (option1 == 'd')
+                result[i] = cosf(data[i][0] * M_PI / 180);
+        }
+    }
+    break;
+    case 'c':
+    {
+        char option1;
+        printf("\n\033[1mc) tan(ϑ)\033[0m\n");
+        printf("Is ϑ given in degrees(d) or radians(r)?\n");
+        printf("Your option(d or r): ");
+        cin >> option1;
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            if (option1 == 'r')
+                result[i] = tanf(data[i][0]);
+            else if (option1 == 'd')
+                result[i] = tanf(data[i][0] * M_PI / 180);
+        }
+    }
+    break;
+    case 'd':
+    {
+        char option1;
+        printf("\n\033[1md) cosec(ϑ)\033[0m\n");
+        printf("Is ϑ given in degrees(d) or radians(r)?\n");
+        printf("Your option(d or r): ");
+        cin >> option1;
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            if (option1 == 'r')
+                result[i] = (float)1 / sinf(data[i][0]);
+            else if (option1 == 'd')
+                result[i] = (float)1 / sinf(data[i][0] * M_PI / 180);
+        }
+    }
+    break;
+    case 'e':
+    {
+        char option1;
+        printf("\n\033[1me) sec(ϑ)\033[0m\n");
+        printf("Is ϑ given in degrees(d) or radians(r)?\n");
+        printf("Your option(d or r): ");
+        cin >> option1;
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            if (option1 == 'r')
+                result[i] = (float)1 / cosf(data[i][0]);
+            else if (option1 == 'd')
+                result[i] = (float)1 / cosf(data[i][0] * M_PI / 180);
+        }
+    }
+    break;
+    case 'f':
+    {
+        char option1;
+        printf("\n\033[1mf) cot(ϑ)\033[0m\n");
+        printf("Is ϑ given in degrees(d) or radians(r)?\n");
+        printf("Your option(d or r): ");
+        cin >> option1;
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            if (option1 == 'r')
+                result[i] = (float)1 / tanf(data[i][0]);
+            else if (option1 == 'd')
+                result[i] = (float)1 / tanf(data[i][0] * M_PI / 180);
+        }
+    }
+    break;
+    case 'g':
+    {
+
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            result[i] = asinf(data[i][0]);
+        }
+    }
+    break;
+    case 'h':
+    {
+
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            result[i] = acosf(data[i][0]);
+        }
+    }
+    break;
+    case 'i':
+    {
+
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            result[i] = atanf(data[i][0]);
+        }
+    }
+    break;
+    case 'j':
+    {
+
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            result[i] = asinf((float)1 / data[i][0]);
+        }
+    }
+    break;
+    case 'k':
+    {
+
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            result[i] = acosf((float)1 / data[i][0]);
+        }
+    }
+    break;
+    case 'l':
+    {
+
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            result[i] = atanf((float)1 / data[i][0]);
+        }
+    }
+    break;
+    }
+}
 void printresult(float *result)
 {
     for (int i = 0; i < no_of_inputs; ++i)
@@ -494,4 +531,3 @@ void printresult(float *result)
         printf("%f\n", result[i]);
     }
 }
-*/
