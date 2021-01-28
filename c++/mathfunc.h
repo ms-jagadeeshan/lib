@@ -526,8 +526,29 @@ void trignometric(float data[][dummy_variable], float *result)
 }
 void printresult(float *result)
 {
-    for (int i = 0; i < no_of_inputs; ++i)
+    int option;
+    printf("\nWhat do you want?\n");
+    printf("1.To be displayed on output console.\n");
+    printf("2.Export as file(.txt).\n");
+    printf("Your option(1 or 2): ");
+    cin >> option;
+    if (option == 1)
     {
-        printf("%f\n", result[i]);
+        printf("\n\034[1mResult\033[0m\n");
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            printf("%f\n",g result[i]);
+        }
+    }
+    else if (option == 2)
+    {
+        char *output;
+        printf("Enter output file name(with extension): ");
+        cin >> output;
+        FILE *output_data = fopen(output, "w");
+        for(int i=0; i < no_of_inputs; ++i)
+        {
+            fprintf(output_data, "%f\n",result[i]);
+        }
     }
 }
