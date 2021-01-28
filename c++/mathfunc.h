@@ -537,7 +537,7 @@ void printresult(float *result)
         printf("\n\034[1mResult\033[0m\n");
         for (int i = 0; i < no_of_inputs; ++i)
         {
-            printf("%f\n",g result[i]);
+            printf("%f\n",result[i]);
         }
     }
     else if (option == 2)
