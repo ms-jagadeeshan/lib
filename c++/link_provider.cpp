@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
+bool isFound=false;
 class timings
 {
 private:
@@ -24,19 +25,16 @@ public:
             if (day == day_ && hour == hour_)
             {
                 cout << link;
+                isFound=true;
+
             }
-            else
-                cout<<"noc";
         }
-        else if(minute_<49)
+        else if (minute_ <= 49)
         {
-            if (day == day_ && hour == hour_-1 )
-        {
-            cout << link;
-        }
-            else
+            if (day == day_ && hour == hour_ - 1)
             {
-                cout<<"noc";
+                cout << link;
+                isFound = true;
             }
         }
     }
@@ -68,8 +66,12 @@ int main(int argc, char *argv[])
     int day1 = argv[3][0] - '0';
     int hour1 = (strlen(argv[1]) == 1) ? (argv[1][0] - '0') : ((argv[1][0] - '0') * 10) + (argv[1][1] - '0');
     int minute1 = ((argv[2][0] - '0') * 10) + (argv[2][1] - '0');
-    for (int i = 0; i < 20; ++i)
+    a[0].search(hour1, minute1, day1);
+    for (int i = 1; i < 20; ++i)
     {
+        if(!isFound)
         a[i].search(hour1, minute1, day1);
     }
+    if(!isFound)
+    cout<<"noc";
 }
