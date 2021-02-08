@@ -80,7 +80,7 @@ Scroll down and click +
 1.Give shortcut name as your wish
 <br>2.Enter this in command
 ```
-gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.sh ; sleep 5"'
+gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.bash ; sleep 5"'
 ```
 3.Click set shortcut,set shortcut key as you wish
 <br>

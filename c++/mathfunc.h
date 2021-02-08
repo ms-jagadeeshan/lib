@@ -56,7 +56,7 @@ int printMenu(int a)
     {
         printf("Your given data have %d inputs\n", no_of_inputs);
         printf("And also it have %d variables\n\n", no_of_variables);
-        int local_function_code[9] = {500, 501, 502, 503, 504, 505, 519, 518, 506};
+        int local_function_code[10] = {500, 501, 502, 503, 504, 505, 519, 518, 520, 506};
         printf("What do you want?\n");
         printf("1.Trignometric\n");                  //function code =>500,
         printf("2.Inverse\n");                       //function code =>501,
@@ -66,10 +66,11 @@ int printMenu(int a)
         printf("6.Power(x power n or n power x)\n"); //function code =>505,
         printf("7.Exponential( e power x)\n");       //function code =>519,
         printf("8.Negation\n");                      //function  code=>518,
-        printf("9.Custom\n");                        //function code =>506,
+        printf("9.Polynomial\n");                      //function code =>520,
+        printf("10.Custom\n");                       //function code =>506,
         printf("Your choice(1-9):");
         cin >> option;
-        if (option <= 9 && option >= 1)
+        if (option <= 10 && option >= 1)
             function_code = local_function_code[option - 1];
         else
             printMenu(a);
@@ -320,6 +321,16 @@ void negation(float data[][dummy_variable], float *result)
         result[i] = data[i][0] * (-1);
     }
 }
+void polynomial(float data[][dummy_variable],float *result)
+{
+    int highest_deg;
+    char subscript[10] = {'₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'};
+    printf("\n\033[1m9.Polynomial\033[0m\n");
+    printf("Enter the highest degree of polynomial : ");
+    cin >> highest_deg;
+    float coefficient[highest_deg];
+    printf("Now enter the coefficients(a₁ ₀represents coefficient of x¹");
+}
 void square(float data[][dummy_variable], float *result)
 {
     for (int i = 0; i < no_of_inputs; ++i)
@@ -537,7 +548,7 @@ void printresult(float *result)
         printf("\n\034[1mResult\033[0m\n");
         for (int i = 0; i < no_of_inputs; ++i)
         {
-            printf("%f\n",result[i]);
+            printf("%f\n", result[i]);
         }
     }
     else if (option == 2)
@@ -546,9 +557,9 @@ void printresult(float *result)
         printf("Enter output file name(with extension): ");
         cin >> output;
         FILE *output_data = fopen(output, "w");
-        for(int i=0; i < no_of_inputs; ++i)
+        for (int i = 0; i < no_of_inputs; ++i)
         {
-            fprintf(output_data, "%f\n",result[i]);
+            fprintf(output_data, "%f\n", result[i]);
         }
     }
 }
