@@ -9,28 +9,6 @@ int no_of_variables = 0;
 int no_of_inputs = 0;
 int function_code;
 /*
-void csvAnalyse(FILE *);
-void getData(float *, FILE *);
-int printMenu(int);
-void addition(float[][dummy_variable], float *);
-void printresult(float *);
-void subraction(float[][dummy_variable], float *);
-void multiplication(float[][dummy_variable], float *);
-void division(float[][dummy_variable], float *);
-void average(float[][dummy_variable], float *);
-void minimum(float[][dummy_variable], float *);
-void maximum(float[][dummy_variable], float *);
-void exponential(float[][dummy_variable], float *);
-void power_1_var(float[][dummy_variable], float *);
-void power_2_var(float[][dummy_variable], float *);
-void log_1_var(float[][dummy_variable], float *);
-void negation(float[][dummy_variable], float *);
-void square(float[][dummy_variable], float *);
-void squareroot(float[][dummy_variable], float *);
-void cuberoot(float[][dummy_variable], float *);
-void inverse(float[][dummy_variable], float *);
-void hypotenuse(float[][dummy_variable], float *);
-void sin(float *, float *);
 void print(float *arr, int m, int n)
 {
     int i, j;
@@ -66,7 +44,7 @@ int main()
     switch (printMenu(no_of_variables))
     {
     case 500:
-        trignometric(data,result);
+        trignometric(data, result);
         break;
     case 501:
         inverse(data, result);
@@ -89,8 +67,11 @@ int main()
     case 519:
         negation(data, result);
         break;
+    case 520:
+        polynomial(data, result);
+        break;
     case 506:
-        
+
         break;
     case 507:
         addition(data, result);

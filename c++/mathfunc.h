@@ -66,7 +66,7 @@ int printMenu(int a)
         printf("6.Power(x power n or n power x)\n"); //function code =>505,
         printf("7.Exponential( e power x)\n");       //function code =>519,
         printf("8.Negation\n");                      //function  code=>518,
-        printf("9.Polynomial");                      //function code =>520,
+        printf("9.Polynomial\n");                      //function code =>520,
         printf("10.Custom\n");                       //function code =>506,
         printf("Your choice(1-9):");
         cin >> option;
@@ -324,13 +324,12 @@ void negation(float data[][dummy_variable], float *result)
 void polynomial(float data[][dummy_variable],float *result)
 {
     int highest_deg;
-    
+    char subscript[10] = {'₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'};
     printf("\n\033[1m9.Polynomial\033[0m\n");
-    printf("Enter the highest degree of polynomial\n");
-    cin>>highest_deg;
+    printf("Enter the highest degree of polynomial : ");
+    cin >> highest_deg;
     float coefficient[highest_deg];
-    printf("Now enter the coefficients(a");
-    
+    printf("Now enter the coefficients(a₁ ₀represents coefficient of x¹");
 }
 void square(float data[][dummy_variable], float *result)
 {
