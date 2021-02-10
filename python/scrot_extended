@@ -1,1 +1,106 @@
-/home/jaga_matrix/.local/bin/scrot_extended
+#!/usr/bin/env python
+import subprocess
+import os
+import sys
+import datetime
+
+## Note : save this to .local/bin and then make it executable by chmod +x ~/.local/bin/scrot_extended
+now = datetime.datetime.now()
+isFound = False
+classcode = "noclass"
+class Timings:
+    def __init__(self,hour,day,link,classname):
+        self.hour = hour
+        self.day = day
+        self.link = link
+        self.classname = classname
+       
+    def search(self,hour_,minute_,day_):
+        if hour_ <= 55:
+            if self.day == day_ and self.hour == hour_-1 :
+                classcode = self.classname
+                isFound = True 
+    
+def main():
+    list = []
+    list.append( Timings(8, 1, "c", "Calculus"))
+    list.append( Timings(11, 1, "e", "Electric_Circuits"))
+    list.append( Timings(13, 1, "m", "Materials"))
+    list.append( Timings(10, 2, "e", "Electric_Circuits"))
+    list.append( Timings(11, 2, "m", "Materials"))
+    list.append( Timings(13, 3, "c", "Calculus"))
+    list.append( Timings(14, 3, "m", "Foundation_for_engineering_and_product_design"))
+    list.append( Timings(8, 54, "e", "Electric_Circuits"))
+    list.append( Timings(9, 4, "m", "Materials"))
+    list.append( Timings(13, 4, "c", "Calculus"))
+    list.append( Timings(9, 5, "c", "Calculus"))
+    list.append( Timings(11, 5, "e", "Electric_Circuits"))
+    
+    if now.day == 14:
+        day = 3
+    elif now.day == 21:
+        day = 4
+    elif now.day == 28:
+        day = 5
+    else:
+        day=now.strftime("%w")
+
+    for obj in list:
+        if not isFound:
+            obj.search(now.hour,now.minute,day)
+        else:
+            break
+    if not isFound:
+        classcode = "noclass"
+main()
+# setting default directories / filenames
+home = os.environ["HOME"]
+temp = home+"/"+".scrot_images"
+
+#creating initial filename 
+k = 1
+while True:
+    img_in = temp+"/"+"input_"+str(k)+".png"
+    if os.path.exists(img_in):
+        k = k+1
+    else:
+        break
+
+# if you prefer, you can change the two line below:
+if classcode != "noclass":
+    output_directory = home+"/"+"college"+"/"+"semester-1/screenshots/"+classcode # output directory
+    filename =  (classcode+now.strftime(" %Y-%m-%d %H-%M-%S"))                # filename
+else:
+    output_directory = home+"/Pictures"
+    filename = "Screenshot from "+now.strftime("%Y-%m-%d %H-%M-%S")
+# creating needed directories
+for dr in [temp, output_directory]:
+    if not os.path.exists(dr):
+        os.mkdir(dr)
+# creating filename (-number) to prevent overwriting previous shots
+img_out = output_directory+"/"+filename+".png"
+
+# reading arguments,arranging commands to perform
+# if no arguments present,then takes screenshot according class going in this time 
+#if no class going on ,then captures entire screen
+coords = []
+if len(sys.argv) == 1:
+    if classcode == "Materials":
+        coords = ["620","0","980","1080"]
+    elif classcode == "Calculus":
+        coords = ["0","0","1920","1080"]
+    elif classcode == "Electric_Circuits":
+        coords = ["0","0","1920","1080"]
+    elif classcode == "Foundation_for_engineering_and_product_design":
+        coords = ["620","0","980","1080"]
+    elif classcode == "noclass":
+        coords = ["0","0","1920","1080"]
+    
+elif len(sys.argv)  == 5:
+    coords =sys.argv[1:5]
+
+cmd1 = ["scrot", img_in]
+cmd2 = ["convert", img_in, "-crop", coords[2]+"x"+coords[3]+"+"+coords[0]+"+"+coords[1], "+repage", img_out]
+# Take screnshot, crop image
+for cmd in [cmd1, cmd2]:
+    subprocess.call(cmd)
