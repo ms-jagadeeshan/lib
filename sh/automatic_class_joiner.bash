@@ -8,7 +8,7 @@ if [ "$day" = "6" ]
 then 
 {
     echo  "What is your timetable?\n"
-    echo "1 for Monday\n2 for Tuesday\n3 for Wednesday\n4 for Thrusday\n5 for Friday\n"
+    echo -e "1 for Monday\n2 for Tuesday\n3 for Wednesday\n4 for Thrusday\n5 for Friday\n"
     read -p "Enter here(1-5):" day
 }
 fi
@@ -41,5 +41,5 @@ else
     sleep 1
     xdg-open ${arr[0]}
     echo "Opened"
-    echo "Your next class is ${arr[1]} and will be on ${days[k]} ${arr[3]}.00 "
+    echo "Your current class is ${arr[1]} and will be on ${days[k]} ${arr[3]}.00 "
 fi
