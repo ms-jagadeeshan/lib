@@ -43,6 +43,3 @@ else
     echo "Opened"
     echo "Your current class is ${arr[1]} and will be on ${days[k]} ${arr[3]}.00 "
 fi
-
-
-##### (firefox:8374): Gtk-WARNING **: 09:00:36.050: Theme directory panel/22 of theme Mojave-CT-Classic has no size field
