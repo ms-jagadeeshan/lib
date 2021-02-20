@@ -173,18 +173,18 @@ void division(float data[][dummy_variable], float *result)
     int option;
     printf("\n\033[1m4.DIVISION\033[0m\n");
     printf("If your input format is x,y\n");
-    printf("Do you want 1)x-y or 2)y-x ?\n");
+    printf("Do you want 1)x/y or 2)y/x ?\n");
     printf("Your option(1 or 2):");
     cin >> option;
     if (option == 1)
     {
         for (int i = 0; i < no_of_inputs; ++i)
-            result[i] = data[i][0] - (float)data[i][1];
+            result[i] = data[i][0] / (float)data[i][1];
     }
     else if (option == 2)
     {
         for (int i = 0; i < no_of_inputs; ++i)
-            result[i] = data[i][1] - data[i][0];
+            result[i] = data[i][1] / data[i][0];
     }
     else
     {
@@ -324,7 +324,7 @@ void negation(float data[][dummy_variable], float *result)
 void polynomial(float data[][dummy_variable],float *result)
 {
     int highest_deg;
-    char subscript[10] = {'₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'};
+    //char subscript[10] = {'₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉'};
     printf("\n\033[1m9.Polynomial\033[0m\n");
     printf("Enter the highest degree of polynomial : ");
     cin >> highest_deg;
@@ -545,7 +545,7 @@ void printresult(float *result)
     cin >> option;
     if (option == 1)
     {
-        printf("\n\034[1mResult\033[0m\n");
+        printf("\n\033[1mResult\033[0m\n");
         for (int i = 0; i < no_of_inputs; ++i)
         {
             printf("%f\n", result[i]);
@@ -561,5 +561,6 @@ void printresult(float *result)
         {
             fprintf(output_data, "%f\n", result[i]);
         }
+        fclose(output_data);
     }
 }

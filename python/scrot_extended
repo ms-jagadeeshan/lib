@@ -40,15 +40,10 @@ def main():
     list.append( Timings(13, 4, "c", "Calculus"))
     list.append( Timings(9, 5, "c", "Calculus"))
     list.append( Timings(11, 5, "e", "Electric_Circuits"))
-    if now.day == 14:
-        day = 3
-    elif now.day == 21:
-        day = 4
-    elif now.day == 28:
+    if now.day == 27:
         day = 5
     else:
         day=now.strftime("%w")
-    
     for obj in list:
         if isFound == False :
             obj.search(now.hour,now.minute,day)
