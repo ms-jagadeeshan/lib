@@ -116,7 +116,7 @@ You can use gui opening file,and IDE's for running program.
 
 ### Automatic class opener
 Single 👆 , to join online class. Don't search for class link anymore.
-<br>This program is solely for IIIDM kancheepuram students,please others don't use.
+<br>This program is solely for IIITDM kancheepuram students,please others don't use.
 <br>
 For batch A student the links are correct,but for Ec batch-2 students have to edit the link_provider.cpp to get correct link.
 And also edit programming practice link to your link,(link given in link_provider.cpp is for 1-21 )
