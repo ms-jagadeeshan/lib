@@ -1,0 +1,29 @@
+1)To convert pptx to pdf in command line 
+        $ libreoffice --headless --invisible --convert-to pdf *.pptx
+	
+	"--headless"
+	Starts in "headless mode", which allows using the application without a 		user interface.
+	This special mode can be used when the application is controlled by 		external clients via the API...
+	It implies --invisible and strictly ignores any GUI environment.
+	
+	--invisible
+	Starts in invisible mode.
+	Neither the start-up logo nor the initial program window will be visible. 	LO can be controlled and documents and dialogs can be opened via the API.
+	When started with this parameter, it can only be quit using the taskmanager 		(Windows) or the kill command (UNIX based systems). 
+	
+2)To convert multiple pdf to single pdf
+	$ sudo apt install poppler-utils
+	$ pdfunite file1.pdf file2.pdf merged-output.pdf
+	
+	Note: Files to be merged need to be in the same directory where pdfunife is 	executed
+	
+3)To compress pdf
+	$ sudo apt install pdftk
+	$ pdf2ps
+	
+4)To find and replace string
+     Sample:
+	$ echo "biveb" | tr 'b' 'r'
+	river
+	
+	
