@@ -47,8 +47,8 @@ Install wget using
 ```
 sudo apt install wget
 ```
-### Installing
-- [Automatic class opener](#automatic_class_opener)
+### Links
+- [Automatic class opener]()
 - [Lab Calculator](#lab_calculator)
 
 1.Download zip file from github
@@ -111,20 +111,6 @@ You can use gui opening file,and IDE's for running program.
 <a href="https://imgur.com/bXnVw15"><img src="https://i.imgur.com/bXnVw15.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/o7IMmDM"><img src="https://i.imgur.com/o7IMmDM.png" title="source: imgur.com" /></a>
 
-
-## 🎈 Usage <a name="usage"></a>
-
-### Automatic class opener
-Single 👆 , to join online class. Don't search for class link anymore.
-<br>This program is solely for IIITDM kancheepuram students,please others don't use.
-<br>
-For batch A student the links are correct,but for Ec batch-2 students have to edit the link_provider.cpp to get correct link.
-And also edit programming practice link to your link,(link given in link_provider.cpp is for 1-21 )
-<br>
-<a href="https://imgur.com/FNOcFC3"><img src="https://i.imgur.com/FNOcFC3.png" title="source: imgur.com" /></a>
-Others students are required to insert their link in program named link_provider.cpp
-<br>
-If you finished setting correctly,Just click the short cut key to open you class.
 
 ### Lab Calculator
 I know it is very annoying when calculating values for lab record.

@@ -1,0 +1,8 @@
+gitignore
+.vscode/launch.json
+.vscode/tasks.json
+c++/lab_calculator
+sh/automatic_class_joiner.bash
+c++/clear.csv
+.vscode/settings.json
+class_joiner/link_provider

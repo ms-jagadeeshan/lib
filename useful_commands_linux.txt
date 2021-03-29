@@ -1,0 +1,75 @@
+1)To convert pptx to pdf in command line 
+        $ libreoffice --headless --invisible --convert-to pdf *.pptx
+	
+	"--headless"
+	Starts in "headless mode", which allows using the application without a user interface.
+	This special mode can be used when the application is controlled by external clients via the API...
+	It implies --invisible and strictly ignores any GUI environment.
+	
+	--invisible
+	Starts in invisible mode.
+	Neither the start-up logo nor the initial program window will be visible. 	LO can be controlled and documents and dialogs can be opened via the API.
+	When started with this parameter, it can only be quit using the taskmanager 		(Windows) or the kill command (UNIX based systems). 
+	
+2)To convert multiple pdf to single pdf
+	$ sudo apt install poppler-utils
+	$ pdfunite file1.pdf file2.pdf merged-output.pdf
+	
+	Note: Files to be merged need to be in the same directory where pdfunife is 	executed
+	
+3)To compress pdf
+	$ sudo apt install ghostscript
+	$ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf
+	
+	-dPDFSETTINGS=/screen	Has a lower quality and smaller size. (72 dpi)
+	-dPDFSETTINGS=/ebook	Has a better quality, but has a slightly larger 		size (150 dpi)
+	-dPDFSETTINGS=/prepress	Output is of a higher size and quality (300 dpi)
+	-dPDFSETTINGS=/printer	Output is of a printer type quality (300 dpi)
+	-dPDFSETTINGS=/default	Selects the output which is useful for multiple 		purposes. Can cause large PDFS.
+	
+	or 
+	$ sudo apt install pdftk
+	$ ps2pdf -dPDFSETTINGS=/ebook intermediate.pdf finaloutput.pdf
+	
+	
+4)To find and replace string
+     Sample:
+	$ echo "biveb" | tr 'b' 'r'
+	river
+
+5)To combine images to pdf
+	$sudo apt-get install imagemagick
+
+	$convert image1.jpg image2.png image3.bmp output.pdf
+	
+6)To generate qr code for link
+	$qrencode -o qrcode.png 'Your_link'
+	
+7)To compress video
+	$ffmpeg -i input.mp4 -vcodec libx264 -crf 20 output.mp4
+	
+	Here crf value is given as 20, higher value of crf corresponds to lower quality and thereby smaller size and lower value corresponds to high quality and thereby larger size. For best compression and quality , 24-18 crf value is good.
+	
+8)To convert odt to pptx and inverse    #For this you need libre office installed in your machine
+	#odp to pptx
+	$soffice --headless --convert-to pptx *.odp             //to convert all odp in that folder
+			or
+	$soffice --headless --convert-to pptx input.odp
+	
+	#pptx to odp
+	$soffice --headless --convert-to odp *.pptx
+	
+9)To convert pdf to images
+	$pdftoppm -<image_format> <pdf_filename> <image_name>
+	
+10)To compress a folder
+	$tar -jcvf archive_name.tar.bz2 folder_to_compress
+	
+	to extract
+	$tar -jxvf archive_name.tar.bz2
+
+11)To merge two or more videos
+	$sudo apt update && sudo apt install mkvtoolnix mkvtoolnix-gui
+	
+	mkvtoolnix-gui is optional, if you need gui install it
+	$mkvmerge -o output.mp4 file1.mp4 \+ file2.mp4 \+ file3.mp4
