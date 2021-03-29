@@ -136,17 +136,6 @@ void addition(float data[][dummy_variable], float *result)
 }
 void subraction(float data[][dummy_variable], float *result)
 {
-    int optin;
-    printf("\n\033[1m2.SUBTRACTION\033[0m\n");
-    printf("If your input format is x,y\n");
-    printf("Do you want 1)x-y or 2)y-x ?\n");
-    printf("Your option(1 or 2):");
-    scanf("%d",&optin);
-    
-    
-}
-void subraction1(float data[][dummy_variable], float *result)
-{
     int option;
     printf("\n\033[1m2.SUBTRACTION\033[0m\n");
     printf("If your input format is x,y\n");
