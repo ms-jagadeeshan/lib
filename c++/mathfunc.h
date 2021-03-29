@@ -136,6 +136,17 @@ void addition(float data[][dummy_variable], float *result)
 }
 void subraction(float data[][dummy_variable], float *result)
 {
+    int optin;
+    printf("\n\033[1m2.SUBTRACTION\033[0m\n");
+    printf("If your input format is x,y\n");
+    printf("Do you want 1)x-y or 2)y-x ?\n");
+    printf("Your option(1 or 2):");
+    scanf("%d",&optin);
+    
+    
+}
+void subraction1(float data[][dummy_variable], float *result)
+{
     int option;
     printf("\n\033[1m2.SUBTRACTION\033[0m\n");
     printf("If your input format is x,y\n");
@@ -556,6 +567,36 @@ void printresult(float *result)
         char *output;
         printf("Enter output file name(with extension): ");
         cin >> output;
+        FILE *output_data = fopen(output, "w");
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            fprintf(output_data, "%f\n", result[i]);
+        }
+        fclose(output_data);
+    }
+}
+void printresult1(float *result)
+{
+    int option;
+    printf("\nWhat do you want?\n");
+    printf("1.To be displayed on output console.\n");
+    printf("2.Export as file(.txt).\n");
+    printf("Your option(1 or 2): ");
+    cin >> option;
+    if (option == 1)
+    {
+        printf("\n\033[1mResult\033[0m\n");
+        for (int i = 0; i < no_of_inputs; ++i)
+        {
+            printf("%f\n", result[i]);
+        }
+    }
+    else if (option == 2)
+    {
+        char *output;
+        printf("Enter output file name(with extension): ");
+        cin >> output;
+        cout<<output;
         FILE *output_data = fopen(output, "w");
         for (int i = 0; i < no_of_inputs; ++i)
         {

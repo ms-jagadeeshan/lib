@@ -2,8 +2,8 @@
         $ libreoffice --headless --invisible --convert-to pdf *.pptx
 	
 	"--headless"
-	Starts in "headless mode", which allows using the application without a 		user interface.
-	This special mode can be used when the application is controlled by 		external clients via the API...
+	Starts in "headless mode", which allows using the application without a user interface.
+	This special mode can be used when the application is controlled by external clients via the API...
 	It implies --invisible and strictly ignores any GUI environment.
 	
 	--invisible
@@ -36,5 +36,40 @@
      Sample:
 	$ echo "biveb" | tr 'b' 'r'
 	river
+
+5)To combine images to pdf
+	$sudo apt-get install imagemagick
+
+	$convert image1.jpg image2.png image3.bmp output.pdf
 	
+6)To generate qr code for link
+	$qrencode -o qrcode.png 'Your_link'
 	
+7)To compress video
+	$ffmpeg -i input.mp4 -vcodec libx264 -crf 20 output.mp4
+	
+	Here crf value is given as 20, higher value of crf corresponds to lower quality and thereby smaller size and lower value corresponds to high quality and thereby larger size. For best compression and quality , 24-18 crf value is good.
+	
+8)To convert odt to pptx and inverse    #For this you need libre office installed in your machine
+	#odp to pptx
+	$soffice --headless --convert-to pptx *.odp             //to convert all odp in that folder
+			or
+	$soffice --headless --convert-to pptx input.odp
+	
+	#pptx to odp
+	$soffice --headless --convert-to odp *.pptx
+	
+9)To convert pdf to images
+	$pdftoppm -<image_format> <pdf_filename> <image_name>
+	
+10)To compress a folder
+	$tar -jcvf archive_name.tar.bz2 folder_to_compress
+	
+	to extract
+	$tar -jxvf archive_name.tar.bz2
+
+11)To merge two or more videos
+	$sudo apt update && sudo apt install mkvtoolnix mkvtoolnix-gui
+	
+	mkvtoolnix-gui is optional, if you need gui install it
+	$mkvmerge -o output.mp4 file1.mp4 \+ file2.mp4 \+ file3.mp4

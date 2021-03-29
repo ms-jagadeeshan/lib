@@ -106,7 +106,7 @@ int main()
         break;
     }
 
-    printresult(result);
+    printresult1(result);
     return 0;
 }
 /*int getdataMenu()
