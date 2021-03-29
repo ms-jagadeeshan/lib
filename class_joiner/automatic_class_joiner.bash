@@ -12,7 +12,7 @@ if [ "$DAY" = "6" ] ; then
 }
 fi
 cd
-cd $DIR/c++ && g++ link_provider.cpp -o link_provider 
+cd $DIR/class_joiner && g++ link_provider.cpp -o link_provider 
 output=$(./link_provider $HOUR $MINUTE $DAY)
 declare -i i=0
 declare -a ARR
