@@ -16,78 +16,19 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> My library programs
     <br> 
 </p>
 
-## 📝 Table of Contents
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
-This is my library functions to automate and enhance interface 
-## 🏁 Getting Started <a name = "getting_started"></a>
-### Prerequisites
-
-Need curl or wget command(any one) to download the zip file.
-Make sure you already have curl or wget.If you don't have install it.
-Install curl using,
-
-```
-sudo apt install curl
-```
-or
-Install wget using
-
-```
-sudo apt install wget
-```
-### Links
-- [Automatic class opener]()
+This is my library functions to automate things.
+## Links
+- [Automatic class opener](https://github.com/ms-jagadeeshan/lib/tree/master/class_joiner)
 - [Lab Calculator](#lab_calculator)
 
-1.Download zip file from github
-
-
-```
-curl -LO https://github.com/ms-jagadeeshan/lib/archive/master.zip
-```
-or
-```
-wget https://github.com/ms-jagadeeshan/lib/archive/master.zip
-```
-2.Extract the zip downloaded.
-
-```
-unzip -q master.zip -d ~ && mv lib-master lib
-```
-#### Automatic class opener <a name = "automatic_class_opener"></a>
-To create this shortcut
-Go to settings
-
-<a href="https://imgur.com/V2CRvs4"><img src="https://i.imgur.com/V2CRvs4.png" title="source: imgur.com" /></a>
-
-Search keyboard shortcuts & enter
-<a href="https://imgur.com/VjNmtyy"><img src="https://i.imgur.com/VjNmtyy.png" title="source: imgur.com" /></a>
-
-Scroll down and click + 
-<a href="https://imgur.com/8rbchgL"><img src="https://i.imgur.com/8rbchgL.png" title="source: imgur.com" /></a>
-1.Give shortcut name as your wish
-<br>2.Enter this in command
-```
-gnome-terminal -e 'sh -c "~/lib/sh/automatic_class_joiner.bash ; sleep 10"'
-```
-3.Click set shortcut,set shortcut key as you wish
-<br>
-<a href="https://imgur.com/AgaPCG4"><img src="https://i.imgur.com/AgaPCG4.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/5ZnFGfP"><img src="https://i.imgur.com/5ZnFGfP.png" title="source: imgur.com" /></a>
-
-Note:Set a shortcut key which is not in use already.
 #### Lab Calculator <a name="lab_calculator"></a>
 
 ##### via Terminal
