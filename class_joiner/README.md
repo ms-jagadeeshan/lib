@@ -71,7 +71,9 @@ Copy your meet link from browser search bar and add it in place of "fill_link_he
 If you have classes at different time change it accordingly. And change the name of the class according to your course(note:Name of the class should not have space,use underscore instead)
 <a href="https://imgur.com/QksMXxg"><img src="https://i.imgur.com/QksMXxg.png" title="source: imgur.com" /></a>
 <br>
-If you finished setting correctly,Just click the short cut key to open you class.
+If you finished setting correctly,Just click the short cut key to open your class.
+<br>
+Note:If you class is at 10 a.m, you can join in that class from 9.50 onwards , and upto 10.50
 
 Important: Don't stop here,Suggestion for improvments are welcomed.
 
