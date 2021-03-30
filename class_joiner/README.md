@@ -31,7 +31,7 @@ git clone https://github.com/ms-jagadeeshan/lib.git
 ```
 To get the updates of code after cloning
 ```
-cd lib
+cd ~/lib
 git pull
 ```
 
