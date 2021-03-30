@@ -6,3 +6,4 @@ sh/automatic_class_joiner.bash
 c++/clear.csv
 .vscode/settings.json
 class_joiner/link_provider
+class_joiner/link_provider copy.cpp
