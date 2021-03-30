@@ -76,4 +76,4 @@ Important: Don't stop here,Do contribute to this repo.
 
 - [@ms-jagadeeshan](https://github.com/ms-jagadeeshan) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/kylelobo/ms-jagadeeshan/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ms-jagadeeshan/lib/contributors) who participated in this project.
