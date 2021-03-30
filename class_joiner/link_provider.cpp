@@ -97,12 +97,15 @@ int main(int argc, char *argv[])
         {10, 55, 5, "fill_link_here", "Physics_Elective"},
         {13, 55, 5, "fill_link_here", "Data_structure_and_algorithm"},
         {14, 55, 5, "fill_link_here", "Discrete_Structures_for_Computer_Science"}};
+
+    //converting the string arguments to integer
     int day1 = argv[3][0] - '0';
-    int hour1 = (strlen(argv[1]) == 1) ? (argv[1][0] - '0') : ((argv[1][0] - '0') * 10) + (argv[1][1] - '0');
+    int hour1 = (strlen(argv[1]) == 1) ? (argv[1][0] - '0') : ((argv[1][0] - '0') * 10) + (argv[1][1] - '0'); 
     int minute1 = ((argv[2][0] - '0') * 10) + (argv[2][1] - '0');
     //a[i].search(hour1, minute1, day1);
+    int no_of_rows = sizeof(a) / sizeof(a[0]);
     int i = 0;
-    for (i; i < 21; ++i)
+    for (i; i < no_of_rows; ++i)
     {
         if (isFound) // whenever link found breaks the loop
         {
@@ -123,5 +126,5 @@ int main(int argc, char *argv[])
         a[i - 1].getInfo();
     }
     else
-        a[i % 21].getInfo(); //prints the next class details
+        a[i % no_of_rows].getInfo(); //prints the next class details
 }
