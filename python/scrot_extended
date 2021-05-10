@@ -36,10 +36,10 @@ def main():
     list.append( Timings(15, 3, "m", "Foundation_for_engineering_and_product_design"))
     list.append( Timings(16, 3, "m", "Foundation_for_engineering_and_product_design"))
     list.append( Timings(8, 54, "e", "Electric_Circuits"))
-    list.append( Timings(9, 4, "m", "Materials"))
-    list.append( Timings(13, 4, "c", "Calculus"))
+    list.append( Timings(13, 5, "m", "PoM"))
+    list.append( Timings(12, 5, "m", "PoM"))
     list.append( Timings(9, 5, "c", "Calculus"))
-    list.append( Timings(11, 5, "e", "Electric_Circuits"))
+    list.append( Timings(7, 6, "m", "PoM"))
     if now.day == 27:
         day = 5
     else:
@@ -67,7 +67,7 @@ while True:
 
 # if you prefer, you can change the two line below:
 if classcode != "noclass":
-    output_directory = home+"/"+"college"+"/"+"semester-1/screenshots/"+classcode # output directory
+    output_directory = home+"/"+"college"+"/"+"screenshot"+classcode # output directory
     filename =  (classcode+now.strftime(" %Y-%m-%d %H-%M-%S"))                # filename
 else:
     output_directory = home+"/Pictures"
@@ -84,8 +84,8 @@ img_out = output_directory+"/"+filename+".png"
 #if no class going on ,then captures entire screen
 coords = []
 if len(sys.argv) == 1:
-    if classcode == "Materials":
-        coords = ["290","0","1340","1080"]
+    if classcode == "PoM":
+        coords = ["0","135","1443","915"]
     elif classcode == "Calculus":
         coords = ["0","0","1920","1080"]
     elif classcode == "Electric_Circuits":

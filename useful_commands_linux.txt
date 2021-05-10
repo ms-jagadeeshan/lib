@@ -79,3 +79,8 @@
 
 	xdotool getmouselocation gives the cursor location.
 	-n denotes interval (i.e 0.1s here)
+	
+13)To download entire playlist in youtube 
+	$youtube-dl --playlist-start 293 --playlist-end 300 -o '%(title)s by %(uploader)s on %(upload_date)s in %(playlist)s.%(ext)s' -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'  https://youtube.com/playlist?list=PL2qtWkm0Z4ceARkSYPkolOkxCcmKQyy3k
+	
+	
