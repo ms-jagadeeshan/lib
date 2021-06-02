@@ -64,11 +64,11 @@ while True:
         k = k+1
     else:
         break
-
+classcode="pom"
 # if you prefer, you can change the two line below:
 if classcode != "noclass":
-    output_directory = home+"/"+"college"+"/"+"screenshot"+classcode # output directory
-    filename =  (classcode+now.strftime(" %Y-%m-%d %H-%M-%S"))                # filename
+    output_directory = home+"/"+"college"+"/"+"2nd sem/"+"/"+"screenshot"+"/"+classcode # output directory
+    filename =  (classcode+now.strftime("_%Y-%m-%d_%H-%M-%S"))                # filename
 else:
     output_directory = home+"/Pictures"
     filename = "Screenshot from "+now.strftime("%Y-%m-%d %H-%M-%S")
@@ -82,12 +82,13 @@ img_out = output_directory+"/"+filename+".png"
 # reading arguments,arranging commands to perform
 # if no arguments present,then takes screenshot according class going in this time 
 #if no class going on ,then captures entire screen
+
 coords = []
 if len(sys.argv) == 1:
     if classcode == "PoM":
         coords = ["0","135","1443","915"]
-    elif classcode == "Calculus":
-        coords = ["0","0","1920","1080"]
+    elif classcode == "pom":
+        coords = ["400","255","1120","635"]
     elif classcode == "Electric_Circuits":
         coords = ["0","0","1920","1080"]
     elif classcode == "Foundation_for_engineering_and_product_design":

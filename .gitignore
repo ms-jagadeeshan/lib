@@ -9,3 +9,5 @@ class_joiner/link_provider
 class_joiner/link_provider copy.cpp
 class_joiner/automatic_class_joiner copy.bash
 class_joiner/link_providercopy
+class_joiner/link_providercopy.cpp
+class_joiner/automatic_class_joinercopy.bash

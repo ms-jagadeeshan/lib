@@ -83,4 +83,26 @@
 13)To download entire playlist in youtube 
 	$youtube-dl --playlist-start 293 --playlist-end 300 -o '%(title)s by %(uploader)s on %(upload_date)s in %(playlist)s.%(ext)s' -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'  https://youtube.com/playlist?list=PL2qtWkm0Z4ceARkSYPkolOkxCcmKQyy3k
 	
+14)Making pdf of scanned to text
+	$sudo apt install ocrmypdf
+	
+	$ocrmypdf input.pdf output.pdf
+
+15)To change resolution of image
+	$convert input.png -resize 1000×600 output.png
+	
+16)To identify properties image
+	$identify input.png
+	
+	If you need only height and width
+	$identify --format "%w %h" input.png
+	
+	For more detailed properties 
+	$identify  -verbose input.png
+	
+
+	
+	
+	
+	
 	
