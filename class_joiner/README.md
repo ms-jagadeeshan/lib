@@ -14,11 +14,11 @@
 ## 🏁 Getting Started <a name = "getting_started"></a>
 ### Prerequisites
 
-You need "git" command to clone this repository.<br>
-Install git using
+You need "git" and "crontab" command to clone this repository.<br>
+Install git,cron using
 
 ```
-sudo apt install git
+sudo apt install git cron
 ```
 
 ### Installing
@@ -61,7 +61,18 @@ gnome-terminal -e 'sh -c "~/lib/class_joiner/automatic_class_joiner.bash ; sleep
 <a href="https://imgur.com/cK8lvm8"><img src="https://i.imgur.com/cK8lvm8.png" title="source: imgur.com" /></a>
 </p>
 Note:Set a shortcut key which is not in use already.
+<br><br>
+By using <a href="https://www.geeksforgeeks.org/crontab-in-linux-with-examples/">
+crontab </a>you can automatically join class without pressing the shortcut.To setup crontab , open terminal and enter this command<br>
 
+```
+crontab -e
+```
+it will open one file in your code editor, add the below line at the bottom of the file,
+
+```
+54 8-17 * * 1-5 DISPLAY=:0 gnome-terminal -e 'bash $HOME/lib/class_joiner/automatic_class_joiner.bash'
+```
 ## 🎈 Usage <a name="usage"></a>
 
 ### Automatic class opener

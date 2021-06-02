@@ -3,7 +3,7 @@
 HOUR=$(date +%H)
 MINUTE=$(date +%M)
 DAY=$(date +%w)
-DIR="/home/$USER/lib/"
+DIR="$HOME/lib/class_joiner"
 if [ "$DAY" = "6" ] ; then 
 {
     echo  "What is your timetable?\n"
@@ -12,8 +12,8 @@ if [ "$DAY" = "6" ] ; then
 }
 fi
 cd
-cd $DIR/class_joiner && g++ link_provider.cpp -o link_provider 
-output=$(./link_provider $HOUR $MINUTE $DAY)
+cd $DIR && g++ link_provider.cpp -o link_provider 
+output=$($DIR/link_provider $HOUR $MINUTE $DAY)
 declare -i i=0
 declare -a ARR
 declare -a DAYS
@@ -35,10 +35,11 @@ else
     if [  $wifistat == "disabled" ]
     then
         nmcli radio wifi on
-    fi
-    echo "Opening, ${ARR[0]}"
-    sleep 1
-    xdg-open ${ARR[0]}
-    echo "Opened"
-    echo "Your current class is ${ARR[1]} and will be on ${DAYS[k]} ${ARR[3]}.00 "
+    fi 
+       echo "Opening, ${ARR[0]}" 
+       sleep 1
+       DISPLAY=:0 firefox ${ARR[0]} 
+       echo "Opened" 
+       echo "Your current class is ${ARR[1]} and will be on ${DAYS[k]} ${ARR[3]}.00 "
 fi
+sleep 10;
