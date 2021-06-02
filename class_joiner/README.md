@@ -14,9 +14,8 @@
 ## 🏁 Getting Started <a name = "getting_started"></a>
 ### Prerequisites
 
-You need "git" and "crontab" command to clone this repository.<br>
-Install git,cron using
-
+You need "git" command to clone this repository and "crontab" command to automatically run the script.<br>
+Install git and cron using
 ```
 sudo apt install git cron
 ```
