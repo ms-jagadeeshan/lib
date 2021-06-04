@@ -75,8 +75,6 @@ it will open one file in your code editor, add the below line at the bottom of t
 ## 🎈 Usage <a name="usage"></a>
 
 ### Automatic class opener
-Copy your meet link from browser search bar and add it in place of "fill_link_here" like this => "https://meet.google.com/*********"
-<br>
 {8, 55, 1, "fill_link_here", "Differential_Equations"} ,Here 8 denotes hour,55 denotes minute, 1 denotes day(eg-1 for monday,2 for tuesday,...).This 8 corresponds to Differential Equation class starts at 9 o'clock.<br>
 If you have classes at different time change it accordingly. And change the name of the class according to your course(note:Name of the class should not have space,use underscore instead)
 <a href="https://imgur.com/QksMXxg"><img src="https://i.imgur.com/QksMXxg.png" title="source: imgur.com" /></a>
