@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
         {16, 55, 1, "https://meet.google.com/ixr-ojie-aam?pli=1&authuser=1", "Engineering_graphics_practice"},
         {8, 55, 2, "https://meet.google.com/wfp-jjbb-psb?hs=224&pli=1&authuser=1", "Physics_of_Materials"},
         {9, 55, 2, "https://meet.google.com/gzk-vopj-zid?pli=1&authuser=1", "Data_structure_and_algorithm"},
+        {10, 55, 2, "https://meet.google.com/rkg-ewkv-sjj?pli=1&authuser=1", "Differential_Equations"},
         {11, 55, 2, "https://meet.google.com/smw-yhdt-mww?pli=1&authuser=1", "Discrete_Structures_for_Computer_Science"},
         {13, 55, 2, "https://meet.google.com/gzk-vopj-zid?pli=1&authuser=1", "Data_structure_and_algorithm_practice"},
         {14, 55, 2, "https://meet.google.com/mjn-buif-fvr?pli=1&authuser=1", "Data_structure_and_algorithm_practice"},
