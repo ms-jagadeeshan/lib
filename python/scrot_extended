@@ -88,7 +88,7 @@ if len(sys.argv) == 1:
     if classcode == "PoM":
         coords = ["0","135","1443","915"]
     elif classcode == "pom":
-        coords = ["400","255","1120","635"]
+        coords = ["147","180","1103","820"]
     elif classcode == "Electric_Circuits":
         coords = ["0","0","1920","1080"]
     elif classcode == "Foundation_for_engineering_and_product_design":
