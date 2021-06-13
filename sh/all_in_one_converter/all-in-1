@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #COLORS
 CDEF=" \033[0m"                                     # default color
 CCIN=" \033[0;36m"                                  # info color
@@ -34,7 +35,7 @@ sortf() {
     read -p "Do you want to sort the file?(By default a-z)(Y/n): " op
     if [ $op == 'Y' -o $op == 'y' ]; then
         PS3='Enter your choice(1-6): '
-        sort=("Oldest to newest" "Newest to oldest" "A-Z" "Z-A" "Largest to smallest" "Smallest to larges")
+        sort=("Oldest to newest" "Newest to oldest" "A-Z" "Z-A" "Largest to smallest" "Smallest to largest")
         select SORT_OPTION in "${sort[@]}"; do
             case $SORT_OPTION in
                 "Oldest to newest")
@@ -67,7 +68,7 @@ sortf() {
                     prompt -i $(ls *$FILE_TYPE -S)
                     break
                 ;;
-                "Smallest to larges")
+                "Smallest to largest")
                     ls *$FILE_TYPE -1Sr  > ${WRK_DIR}/filelist.txt
                     prompt -i "File order"
                     prompt -i $(ls *$FILE_TYPE -Sr)
@@ -77,10 +78,15 @@ sortf() {
             esac
         done
     else
-        ls *$FILE_TYPE -1 > ${WRK_DIR}/filelist.txt
+        ls *$FILE_TYPE -1 > ${WRK_DIR}/filelist.txt 2>/dev/null
         prompt -i "File order"
-        prompt -i $(ls *$FILE_TYPE)
+        prompt -i $(ls *$FILE_TYPE 2>/dev/null)
     fi
+}
+
+makedir(){
+    [[ -d "${HOME}/all_in_one/${PROJECT_NAME}" ]] || mkdir -p "${HOME}/all_in_one/${PROJECT_NAME}"
+    OUT_DIR="${HOME}/all_in_one/${PROJECT_NAME}"
 }
 
 read -p "Enter your project name: "  PROJECT_NAME
@@ -102,7 +108,7 @@ select TYPE in "${types[@]}"; do
                 if [ -d "${HOME}/${DIR}" ]; then
                     DIR="${HOME}/${DIR}"
                     cd "${DIR}"
-                    echo "Directory $DIR exists."
+                    # echo "Directory $DIR exists."
                     flag=1
                 else
                     prompt -e "[ Error! ] -> Directory ${HOME}/${DIR} does not exists.\n"
@@ -140,30 +146,28 @@ select TYPE in "${types[@]}"; do
                     esac
                 done
             else
-                
-                prompt -w "Warning: Please make sure given folder doesn't contain any other format than image format(if you have any other, stop the program by pressing Ctrl + C) "
-                prompt -i "Waiting 10 seconds\n"
-                sleep 10;
-                FILE_TYPE=""
+                FILE_TYPE=".png *.jpg *.jpeg *.tiff *.webp"
             fi
-            
             
             #sort options
             sortf
             
-            mkdir ${WRK_DIR}/intermediate
             
-            #fixed width
+            mkdir ${WRK_DIR}/intermediate
             while read -r line; do
-                width=$(identify -format '%w' $line)
-                height=$(identify -format '%h' $line)
-                if [ width!=1080 ]; then
-                    height=$((height*1080/width))
-                    height=$(echo $height | awk '{print int($1)}')
-                    convert $line -resize 1080x$height ${WRK_DIR}/intermediate/$line
-                fi
-                prompt -s "successfully changed the resoulution(to fixed width) of $line"
+                cp "$DIR/$line" "${WRK_DIR}/intermediate/$line"
             done < ${WRK_DIR}/filelist.txt
+            #fixed width
+          #  while read -r line; do
+          #      width=$(identify -format '%w' $line)
+          #      height=$(identify -format '%h' $line)
+          #      if [ width!=1080 ]; then
+          #          height=$((height*1080/width))
+          #          height=$(echo $height | awk '{print int($1)}')
+          #          convert $line -resize 1080x$height ${WRK_DIR}/intermediate/$line
+          #      fi
+          #      prompt -s "successfully changed the resoulution(to fixed width) of $line"
+          #  done < ${WRK_DIR}/filelist.txt
             
             [[ -d "${HOME}/all_in_one/${PROJECT_NAME}" ]] || mkdir -p "${HOME}/all_in_one/${PROJECT_NAME}"
             OUT_DIR="${HOME}/all_in_one/${PROJECT_NAME}"
@@ -175,10 +179,13 @@ select TYPE in "${types[@]}"; do
             prompt -i "\nConverting to pdf\n"
             
             #converting images to pdf using img2pdf
-            ls -tr | tr '\n' ' '  | sed 's/$/\ --output\ my.pdf/' | xargs img2pdf
+            if [[ -d "$WRK_DIR/intermediate" ]] ; then
+                ls -tr | tr '\n' ' '  | sed 's/$/\ --output\ my.pdf/' | xargs img2pdf
+                
+            fi
             
             #moving output to output folder
-            mv my.pdf ${OUT_DIR}/${OUTPUT}.pdf
+            mv my.pdf "${OUT_DIR}/${OUTPUT}.pdf"
             
             #deleting the files in intermediate
             if [[ -d "$WRK_DIR/intermediate" ]] ; then
@@ -186,17 +193,21 @@ select TYPE in "${types[@]}"; do
             fi
             
             #success prompt
-            prompt -s "Successfully converted!!!"
+            prompt -s "Successfully converted to pdf!!!"
+            sleep 2
+            
+            #opening converted pdf
+            xdg-open "${OUT_DIR}/${OUTPUT}.pdf"
             break
         ;;
         "Compress pdf")
             flag=0
             while [ $flag -eq 0 ]; do
-                read -p "Enter the folder path of images(relative path from your home folder e.g Photos/screenshots): " DIR
+                read -p "Enter the folder path of pdfs(relative path from your home folder e.g Photos/screenshots): " DIR
                 if [ -d "${HOME}/${DIR}" ]; then
                     DIR=${HOME}/${DIR}
                     cd "${DIR}"
-                    echo "Directory $DIR exists."
+                    #echo "Directory $DIR exists."
                     flag=1
                 else
                     prompt -e "[ Error! ] -> Directory ${HOME}/${DIR} does not exists.\n"
@@ -205,7 +216,7 @@ select TYPE in "${types[@]}"; do
             FILE_TYPE=".pdf"
             ls *$FILE_TYPE -1 > ${WRK_DIR}/filelist.txt
             prompt -i "Pdfs going to be compressed"
-            prompt -i $(ls *$FILE_TYPE )
+            prompt -i $(ls *$FILE_TYPE -1)
             
             
             #option to select how much compression
@@ -225,48 +236,54 @@ select TYPE in "${types[@]}"; do
                         COM_TYPE="printer"
                         break
                     ;;
-                    *) echo "invalid option $REPLY";;
+                    *) echo "invalid option $REPLY" ;;
                 esac
             done
             
+            #creating output directory
             [[ -d "${HOME}/all_in_one/${PROJECT_NAME}" ]] || mkdir -p "${HOME}/all_in_one/${PROJECT_NAME}"
             OUT_DIR="${HOME}/all_in_one/${PROJECT_NAME}"
             cd $OUT_DIR
-            #compressing using ghost script tool
+            
+            #compressing pdf using ghost script tool
             if [[ -d "$OUT_DIR" ]] ; then
                 while read -r line;
                 do
-                    echo gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$COM_TYPE -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$line" "$DIR/$line"
-                    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$COM_TYPE -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$line" "$DIR/$line"
-                    prompt -s "Successfully compressed $line...."
+                    #echo gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$COM_TYPE -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$line" "$DIR/$line"
+                    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$COM_TYPE -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$line" "$DIR/$line" &
+                    prompt -i "Compression started for $line....\n"
                 done < ${WRK_DIR}/filelist.txt
             fi
+            
+            #waiting for child process to complete
+            wait
+            
+            #success prompt and opening the output folder
+            prompt -s "Successfully compressed"
+            sleep 1
+            xdg-open $OUT_DIR
             break
         ;;
         "Pdf to image")
-            ls *$FILE_TYPE -1 > ${WRK_DIR}/filelist.txt
-            prompt -i "File order"
-            prompt -i $(ls *$FILE_TYPE)
+            echo "IN PROGRESS"
             break
         ;;
-        "Z-A")
-            ls *$FILE_TYPE -1r  > ${WRK_DIR}/filelist.txt
-            prompt -i "File order"
-            prompt -i $(ls *$FILE_TYPE -r)
+        "Merge pdfs")
+            echo "IN PROGRESS"
             break
         ;;
-        "Largest to smallest")
-            ls *$FILE_TYPE -1S  > ${WRK_DIR}/filelist.txt
-            prompt -i "File order"
-            prompt -i $(ls *$FILE_TYPE -S)
+        "Split pdf")
+            echo "IN PROGRESS"
             break
         ;;
-        "Smallest to larges")
-            ls *$FILE_TYPE -1Sr > ${WRK_DIR}/filelist.txt
-            prompt -i "File order"
-            prompt -i $(ls *$FILE_TYPE -Sr)
+        "Append image to pdf")
+            echo "IN PROGRESS"
             break
         ;;
-        *) echo "invalid option $REPLY";;
+        "Quick convert" )
+            echo "IN PROGRESS"
+            break
+        ;;
+        *) echo "invalid option $REPLY" ;;
     esac
 done
