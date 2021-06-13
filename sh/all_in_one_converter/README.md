@@ -49,6 +49,7 @@ all-in-1
 
 ## ✍️ Authors <a name = "authors"></a>
 
+ If you have any suggestions, feel free to mail me jagadeeshanmsj@gmail.com
 - [@ms-jagadeeshan](https://github.com/ms-jagadeeshan) - Idea & Initial work
 
 See also the list of [contributors](https://github.com/kylelobo/ms-jagadeeshan/contributors) who participated in this project.
