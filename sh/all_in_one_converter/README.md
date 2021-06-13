@@ -7,10 +7,6 @@
     <br> 
 </p>
 
-## 📝 Table of Contents
-- [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Authors](#authors)
 ## 🏁 Getting Started <a name = "getting_started"></a>
 ### Prerequisites
 
@@ -39,7 +35,7 @@ cp $HOME/lib/sh/all_in_one_converter/all-in-1 $HOME/.local/bin/all-in-1
 chmod +x $HOME/.local/bin/all-in-1
 ```
 
-## 🎈 Usage <a name="usage"></a>
+## 🎈 Usage
 
 Open terminal, enter this to use
 ```
@@ -47,7 +43,7 @@ all-in-1
 ```
 
 
-## ✍️ Authors <a name = "authors"></a>
+## ✍️ Authors 
 
  If you have any suggestions, feel free to mail me jagadeeshanmsj@gmail.com
 - [@ms-jagadeeshan](https://github.com/ms-jagadeeshan) - Idea & Initial work
