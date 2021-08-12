@@ -136,7 +136,7 @@ select AUTH_OP in "${auth[@]}"; do
 done
 
 
-filename="test1.cpp"
+filename="class_joiner.cpp"
 
 if [[ $search1 != "" && $replace1 != "" ]]; then
     sed -i "s/$search1/$replace1/" $filename
@@ -167,10 +167,11 @@ if [[ $search5 != "" && $replace5 != "" ]]; then
     
 fi
 
-g++ test1.cpp -ofast -o test1
+g++ $filename -ofast -o class_joiner
 prompt -i "Compiling $filename...."
 mkdir -p "$HOME/.local/bin"
-ln -sf --verbose "$PWD/test1" "$HOME/.local/bin/"
+ln -sf --verbose "$PWD/class_joiner" "$HOME/.local/bin/"
+ln -sf --verbose "$PWD/cjdaemon.sh" "$HOME/.local/bin/"
 if [[ "$PATH" =~ (^|:)"$HOME/.local/bin"(|/)(:|$) ]]; then
     prompt -i "$HOME/.local/bin is already added to PATH"
     
