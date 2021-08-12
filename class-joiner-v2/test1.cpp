@@ -12,7 +12,7 @@ using std::cin;
 using std::cout;
 using std::string;
 int dsdid = 1;
-int oopsid = 2;
+int oopsid = 1;
 int ooplabid = 1;
 int daalabid = 1;
 struct class_info
