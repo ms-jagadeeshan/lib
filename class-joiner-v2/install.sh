@@ -69,26 +69,66 @@ select DAA_OP in "${daal[@]}"; do
     esac
 done
 
+echo -e "\n\n<-----Oops theory---->"
+PS3='Choose your Oops theory link(1-2): '
+oops=("Oops theory Link 1" "Oops theory Link 2" )
+select OOPS_OP in "${oops[@]}"; do
+    case $OOPS_OP in
+        "Oops theory Link 1")
+            search3="oopsid = 2"
+            replace3="oopsid = 1"
+            break
+        ;;
+        "Oops theory Link 2")
+            search3="oopsid = 1"
+            replace3="oopsid = 2"
+            break
+        ;;
+        
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+echo -e "\n\n<-----Oops Lab---->"
+PS3='Choose your Oops Lab link(1-2): '
+oopl=("Oops Lab Link 1" "Oops Lab Link 2" )
+select OOPL_OP in "${oopl[@]}"; do
+    case $OOPL_OP in
+        "Oops Lab Link 1")
+            search4="ooplabid = 2"
+            replace4="ooplabid = 1"
+            break
+        ;;
+        "Oops Lab Link 2")
+            search4="ooplabid = 1"
+            replace4="ooplabid = 2"
+            break
+        ;;
+        
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
 echo -e "\n\n<-----authuser value---->"
-echo -e "Sample meet link: https://meet.google.com/nfn-xiwj-vpg?authuser=1\nIn the above link 'authuser=1' is for, which google account used to log in"
-echo -e "So open this link (https://meet.google.com/nfn-xiwj-vpg) join with college mail id, see and choose the authuser value"
+echo -e "Sample meet link: https://meet.google.com/nfn-xiwj-vpg?authuser=1\nIn the above link 'authuser=1' is for, which google account have to be used for joining"
+echo -e "So open this link (https://meet.google.com/nfn-xiwj-vpg) join with college mail id, see  and choose the authuser value"
 PS3='Choose your authuser value(1-3): '
 auth=("authuser=0" "authuser=1" "authuser=2")
 select AUTH_OP in "${auth[@]}"; do
     case $AUTH_OP in
         "authuser=0")
-            search3="authuser=1"
-            replace3="authuser=0"
+            search5="authuser=1"
+            replace5="authuser=0"
             break
         ;;
         "authuser=1")
-            search3=""
-            replace3=""
+            search5=""
+            replace5=""
             break
         ;;
         "authuser=2")
-            search3="authuser=1"
-            replace3="authuser=2"
+            search5="authuser=1"
+            replace5="authuser=2"
             break
         ;;
         *) echo "invalid option $REPLY";;
@@ -111,18 +151,30 @@ fi
 
 if [[ $search3 != "" && $replace3 != "" ]]; then
     sed -i "s/$search3/$replace3/" $filename
+    prompt -s "Oops theory link changed sucessfully!!!"
+    
+fi
+
+if [[ $search4 != "" && $replace4 != "" ]]; then
+    sed -i "s/$search4/$replace4/" $filename
+    prompt -s "Oops Lab link changed sucessfully!!!"
+    
+fi
+
+if [[ $search5 != "" && $replace5 != "" ]]; then
+    sed -i "s/$search5/$replace5/" $filename
     prompt -s "authuser value changed sucessfully!!!\n"
     
 fi
 
 g++ test1.cpp -ofast -o test1
-prompt -i "Compiling text1.cpp...."
+prompt -i "Compiling $filename...."
 mkdir -p "$HOME/.local/bin"
 ln -sf --verbose "$PWD/test1" "$HOME/.local/bin/"
 if [[ "$PATH" =~ (^|:)"$HOME/.local/bin"(|/)(:|$) ]]; then
     prompt -i "$HOME/.local/bin is already added to PATH"
     
-    prompt -s "That's it everything oK"
+    prompt -s "That's it everything oK, use class_joiner --help for more details"
 else
     prompt -e "$HOME/.local/bin is not in PATH"
 fi

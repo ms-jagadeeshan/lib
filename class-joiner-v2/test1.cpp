@@ -12,7 +12,7 @@ using std::cin;
 using std::cout;
 using std::string;
 int dsdid = 1;
-int oopsid = 1;
+int oopsid = 2;
 int ooplabid = 1;
 int daalabid = 1;
 struct class_info
@@ -140,14 +140,15 @@ void classes::info_n(int num)
     }
     std::list<class_info>::iterator it;
     int i = 1;
+    string days[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     for (it = l1.begin(); it != l1.end(); ++it)
     {
         if (i == n)
         {
             cout << "CLASS INFO" << std::endl;
             cout << "Class name: " << it->classname << std::endl;
-            printf("Timing: %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
-            cout << "Class link: " << it->link  << std::endl;
+            printf("Timing    : %02d:00 - %02d:00    %s\n", it->hour, (it->hour + it->length), days[it->day].c_str());
+            cout << "Class link: " << it->link << std::endl;
             break;
         }
         i++;
@@ -221,7 +222,7 @@ void classes::join_n(int num)
                 cout << "Opening " << it->link << "...." << std::endl;
                 cout << "CLASS INFO" << std::endl;
                 cout << "Class name: " << it->classname << std::endl;
-                printf("Timing: %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
+                printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
                 break;
             }
         }
@@ -359,7 +360,7 @@ int main(int argc, char **argv)
     if (ooplabid == 1)
         cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
     else
-        cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
+        cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/ygo-ixix-gmr?authuser=1");
 
     if (dsdid == 1)
         cse.add_class(11, 5, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
@@ -385,10 +386,11 @@ int main(int argc, char **argv)
     {
         cse.u_join();
         cse.join();
+        return 0;
     }
     else
     {
-        while ((c = getopt_long(argc, argv, "vn:p:jh", long_options, &option_index)) != -1)
+        while ((c = getopt_long(argc, argv, "vn::p::jh", long_options, &option_index)) != -1)
         {
             switch (c)
             {
@@ -427,7 +429,7 @@ int main(int argc, char **argv)
                         }
                         else
                         {
-                            cout << "class_joiner: --daa requires any one of these arguments\n--daa=1\t- opens first meet\n--daa=2\t- opens second meet\n--daa=3\t- opens youtube channel\n";
+                            cout << "class_joiner: --dsd requires any one of these arguments\n--dsd=1\t- opens first meet\n--dsd=2\t- opens second meet\n";
                             cout << "Try: 'class_joiner --help' for more information\n";
                         }
                     }
