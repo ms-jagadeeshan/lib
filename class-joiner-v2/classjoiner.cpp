@@ -197,6 +197,7 @@ void classes::view()
         cout << "\n";
         i++;
     }
+    
 }
 void classes::join_n(int num)
 {
@@ -223,6 +224,7 @@ void classes::join_n(int num)
                 cout << "CLASS INFO" << std::endl;
                 cout << "Class name: " << it->classname << std::endl;
                 printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
+                execl("/usr/bin/sleep", "sleep", "10", (char *)0);
                 break;
             }
         }
@@ -251,6 +253,7 @@ void classes::join_daa()
         execl("/usr/bin/xdg-open", "xdg-open", str.c_str(), (char *)0);
         exit(EXIT_SUCCESS);
     }
+    execl("/usr/bin/sleep", "sleep", "10", (char *)0);
 }
 void classes::join()
 {
@@ -279,6 +282,11 @@ void classes::join()
         int n = find();
         if (isfound)
             join_n(n);
+        else
+        {
+            cout << "Cool, you don't have any classes" << std::endl;
+            execl("/usr/bin/sleep", "sleep", "10", (char *)0);
+        }
     }
 }
 int classes::find()

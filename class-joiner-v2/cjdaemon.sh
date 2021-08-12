@@ -14,7 +14,7 @@ else
     sleep "$count"m
 fi
 while true; do
-    test1
+    gnome-terminal -- classjoiner
     sleep 60m
     
 done
