@@ -12,6 +12,8 @@ using std::cin;
 using std::cout;
 using std::string;
 int dsdid = 1;
+int oopsid = 1;
+int ooplabid = 1;
 int daalabid = 1;
 struct class_info
 {
@@ -125,8 +127,52 @@ public:
     void join_n(int);
     void join_daa();
     void view();
+    void info();
+    void info_n(int);
     int find();
 };
+void classes::info_n(int num)
+{
+    int n = (num % 16);
+    if (n == 0)
+    {
+        n = 16;
+    }
+    std::list<class_info>::iterator it;
+    int i = 1;
+    for (it = l1.begin(); it != l1.end(); ++it)
+    {
+        if (i == n)
+        {
+            cout << "CLASS INFO" << std::endl;
+            cout << "Class name: " << it->classname << std::endl;
+            printf("Timing: %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
+            cout << "Class link: " << it->link << std::endl;
+            break;
+        }
+        i++;
+    }
+}
+void classes::info()
+{
+    if (next)
+    {
+        int n = find();
+        if (isfound)
+        {
+            info_n(n + next);
+        }
+        else
+        {
+            info_n(n + next - 1);
+        }
+    }
+    else if (previous)
+    {
+        int n = find();
+        info_n(n + 1500 - previous);
+    }
+}
 void classes::view()
 {
     std::list<class_info>::iterator it;
@@ -143,8 +189,6 @@ void classes::view()
         pid_t pid = fork();
         if (!pid)
         {
-            //   execl("/usr/bin/printf", "printf", tmp_str.c_str(), i_str.c_str(), days[it->day].c_str(), s_str.c_str(), e_str.c_str(), it->link.c_str(), it->classname.c_str(), (char *)0);
-
             execl("/usr/bin/printf", "printf", tmp_str.c_str(), i_str.c_str(), days[it->day].c_str(), s_str.c_str(), e_str.c_str(), (char *)0);
             exit(EXIT_SUCCESS);
         }
@@ -155,14 +199,13 @@ void classes::view()
 }
 void classes::join_n(int num)
 {
-    int n = (num % 15);
+    int n = (num % 16);
     if (n == 0)
     {
-        n = 15;
+        n = 16;
     }
     std::list<class_info>::iterator it;
     int i = 1;
-    cout << "num=" << n << std::endl;
     for (it = l1.begin(); it != l1.end(); ++it)
     {
         if (i == n)
@@ -173,7 +216,14 @@ void classes::join_n(int num)
                 execl("/usr/bin/xdg-open", "xdg-open", it->link.c_str(), (char *)0);
                 exit(EXIT_SUCCESS);
             }
-            break;
+            else
+            {
+                cout << "Opening " << it->link << "...." << std::endl;
+                cout << "CLASS INFO" << std::endl;
+                cout << "Class name: " << it->classname << std::endl;
+                printf("Timing: %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
+                break;
+            }
         }
         i++;
     }
@@ -220,14 +270,12 @@ void classes::join()
         else if (previous)
         {
             int n = find();
-            cout << n << std::endl;
             join_n(n + 1500 - previous);
         }
     }
     else
     {
         int n = find();
-        cout << "isfound=" << isfound << "  ,dj" << n << std::endl;
         if (isfound)
             join_n(n);
     }
@@ -281,19 +329,37 @@ int main(int argc, char **argv)
         cse.add_class(9, 2, 1, "Digital System Design", "https://meet.google.com/lookup/bgdvql5cu6?authuser=1");
 
     cse.add_class(10, 2, 1, "Linear Algebra", "https://meet.google.com/nfn-xiwj-vpg?authuser=1");
-    cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+
+    if (oopsid == 1)
+        cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+    else
+        cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+
     cse.add_class(15, 2, 4, "DSD Practice", "https://mail.google.com/mail/u/1/#inbox");
     cse.add_class(9, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
-    cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+
+    if (oopsid == 1)
+        cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+    else
+        cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+
     cse.add_class(14, 3, 1, "DAA-Discussion", "https://meet.google.com/fmv-yypx-ofe?authuser=1");
-    cse.add_class(15, 3, 3, "DAA-Discussion", "https://duckduckgo.com");
+    cse.add_class(15, 3, 3, "System Thinking of Design", "https://teams.microsoft.com/l/channel/19%3aWVZAU6AP1oGOgqofN8hfjJXHY8G551cm1BePFf5MoR41%40thread.tacv2/General?groupId=9fc411af-bdbe-4f49-af6b-2d2909390728&tenantId=be5109ea-c534-473c-af60-2054e070a0ed");
 
     if (dsdid == 1)
         cse.add_class(10, 4, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     else
         cse.add_class(10, 4, 1, "Digital System Design", "https://meet.google.com/lookup/bgdvql5cu6?authuser=1");
 
-    cse.add_class(15, 4, 4, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
+    if (oopsid == 1)
+        cse.add_class(15, 4, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+    else
+        cse.add_class(15, 4, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+
+    if (ooplabid == 1)
+        cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
+    else
+        cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
 
     if (dsdid == 1)
         cse.add_class(11, 5, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
@@ -306,8 +372,8 @@ int main(int argc, char **argv)
     static struct option long_options[] = {
         /*   NAME       ARGUMENT           FLAG  SHORTNAME */
         {"view", no_argument, NULL, 'v'},
-        {"next", required_argument, NULL, 'n'},
-        {"previous", required_argument, NULL, 'p'},
+        {"next", optional_argument, NULL, 'n'},
+        {"previous", optional_argument, NULL, 'p'},
         {"join", no_argument, NULL, 'j'},
         {"daa", optional_argument, NULL, 0},
         {"dsd", optional_argument, NULL, 0},
@@ -376,10 +442,24 @@ int main(int argc, char **argv)
                 cse.u_view();
                 break;
             case 'n':
-                cse.u_next(atoi(optarg));
+                if (optarg)
+                {
+                    cse.u_next(atoi(optarg));
+                }
+                else
+                {
+                    cse.u_next(1);
+                }
                 break;
             case 'p':
-                cse.u_previous(atoi(optarg));
+                if (optarg)
+                {
+                    cse.u_previous(atoi(optarg));
+                }
+                else
+                {
+                    cse.u_previous(1);
+                }
                 break;
             case 'j':
                 cse.u_join();
@@ -404,5 +484,9 @@ int main(int argc, char **argv)
     else if (cse.ret_daa())
     {
         cse.join_daa();
+    }
+    else if (cse.ret_next() || cse.ret_previous())
+    {
+        cse.info();
     }
 }
