@@ -214,7 +214,7 @@ void classes::join_n(int num)
             pid_t pid = fork();
             if (!pid)
             {
-                execl("/usr/bin/xdg-open", "xdg-open", it->link.c_str(), (char *)0);
+                execl("/usr/bin/firefox", "firefox", it->link.c_str(), (char *)0);
                 exit(EXIT_SUCCESS);
             }
             else

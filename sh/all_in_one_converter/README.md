@@ -3,7 +3,7 @@
 
 ---
 
-<p align="center"> Command line tool to convert images to pdf, splitting pdf , merging pdfs and many more.
+<p align="center"> Interactive Command line tool to convert images to pdf, splitting pdf , merging pdfs and many more.
     <br> 
 </p>
 

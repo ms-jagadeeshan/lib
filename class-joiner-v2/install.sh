@@ -27,27 +27,13 @@ prompt () {
         ;;
     esac
 }
-prompt -i "Welcome, This is one time setup for class joiner"
-prompt -w "Please make sure your current directory is lib/class-jointer-v2"
-echo -e "\n\n<-----DSD---->"
-PS3='Choose your DSD link(1-2): '
-dsd=("DSD Link 1" "DSD Link 2" )
-select DSD_OP in "${dsd[@]}"; do
-    case $DSD_OP in
-        "DSD Link 1")
-            search1="dsdid = 2"
-            replace1="dsdid = 1"
-            break
-        ;;
-        "DSD Link 2")
-            search1="dsdid = 1"
-            replace1="dsdid = 2"
-            break
-        ;;
-        
-        *) echo "invalid option $REPLY";;
-    esac
+prompt -i "Welcome, This is one time setup for class joiner\n"
+prompt -e "Please make sure your current directory is lib/class-jointer-v2"
+for i in {1,2,3,4,5} ; do
+    printf "*"
+    sleep 1
 done
+
 
 echo -e "\n\n<-----DAA Lab---->"
 PS3='Choose your DAA Lab link(1-2): '
@@ -122,8 +108,8 @@ select AUTH_OP in "${auth[@]}"; do
             break
         ;;
         "authuser=1")
-            search5=""
-            replace5=""
+            search5="authuser=2"
+            replace5="authuser=1"
             break
         ;;
         "authuser=2")
@@ -137,11 +123,6 @@ done
 
 
 filename="classjoiner.cpp"
-
-if [[ $search1 != "" && $replace1 != "" ]]; then
-    sed -i "s/$search1/$replace1/" $filename
-    prompt -s "\nDSD link changed sucessfully!!!"
-fi
 
 if [[ $search2 != "" && $replace2 != "" ]]; then
     sed -i "s/$search2/$replace2/" $filename
@@ -173,9 +154,13 @@ mkdir -p "$HOME/.local/bin"
 ln -sf --verbose "$PWD/classjoiner" "$HOME/.local/bin/"
 ln -sf --verbose "$PWD/cjdaemon.sh" "$HOME/.local/bin/"
 if [[ "$PATH" =~ (^|:)"$HOME/.local/bin"(|/)(:|$) ]]; then
-    prompt -i "$HOME/.local/bin is already added to PATH"
+    prompt -i "$HOME/.local/bin is already added to PATH" 
+    echo -e "[Desktop Entry]\nType=Application\nExec=sh -c /home/jaga_matrix/.local/bin/cjdaemon.sh\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=Class joiner Daemon\nName=Class Joiner Daemon" > $HOME/.config/autostart/cjdaemon.desktop
+    cp "class-joiner.png" "$HOME/.local/share/icons/class-joiner.png"
+    echo -e "[Desktop Entry]\nTerminal=true\nName=Class Joiner v2\nNoDisplay=false\nExec="$HOME/.local/bin/classjoiner"\nIcon=class-joiner\nType=Application" > "$HOME/.local/share/applications/classjoiner.desktop"
+    prompt -i "Desktop shotcut created successfully!!"
+    prompt -s "That's it everything oK, use 'classjoiner --help' for more details"
     
-    prompt -s "That's it everything oK, use class_joiner --help for more details"
 else
     prompt -e "$HOME/.local/bin is not in PATH"
 fi

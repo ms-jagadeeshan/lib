@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 HOUR=$(date +%H)
 MINUTE=$(date +%M)
@@ -14,7 +14,7 @@ else
     sleep "$count"m
 fi
 while true; do
-    gnome-terminal -- classjoiner
+    classjoiner
+    # DISPLAY=$DISPLAY gnome-terminal -- "$HOME/.local/bin/classjoiner"
     sleep 60m
-    
 done

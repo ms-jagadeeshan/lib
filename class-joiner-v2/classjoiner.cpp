@@ -11,7 +11,6 @@
 using std::cin;
 using std::cout;
 using std::string;
-int dsdid = 1;
 int oopsid = 1;
 int ooplabid = 1;
 int daalabid = 1;
@@ -34,6 +33,8 @@ private:
     bool daa;
     int daa_value;
     bool dsd;
+    bool la;
+    int la_value;
     int dsd_value;
     bool help_flag;
     bool isfound;
@@ -48,8 +49,10 @@ public:
         join_flag = false;
         daa = false;
         dsd = false;
+        la = false;
         daa_value = 0;
         dsd_value = 0;
+        la_value = 0;
         help_flag = false;
         isfound = false;
     }
@@ -119,6 +122,10 @@ public:
     {
         return daa_value;
     }
+    int ret_la()
+    {
+        return la_value;
+    }
     int ret_dsd()
     {
         return dsd_value;
@@ -126,17 +133,45 @@ public:
     void join();
     void join_n(int);
     void join_daa();
+    void join_dsd();
+    void join_la();
     void view();
     void info();
     void info_n(int);
     int find();
+    void help();
 };
+void classes::help()
+{
+    cout << "Usage: classjoiner [OPTION] \n";
+    cout << "\n--daa[=1]                Joins daa class\n";
+    cout << "    1  - opens first link\n";
+    cout << "    2  - opens second link\n";
+    cout << "    3  - opens youtube channel\n";
+    cout << "--dsd[=1]                Joins dsd class\n";
+    cout << "      1  - opens first link\n";
+    cout << "      2  - opens second link\n";
+    cout << "-n, --next[=integer]     Prints the info of next class\n";
+    cout << "-j, --join               When used with next, joins the next class\n";
+    cout << "-v, --view               Prints the entire timetable with info\n";
+    cout << "-p, --previous[=integer] Prints the info of previous class\n";
+    cout << "--help                   Print usage and this help message and exit.\n\n";
+    cout << "Sample usage:\n";
+    cout << "classjoiner               - If class is there, then opens it\n";
+    cout << "classjoiner --view        - Prints the timetable with info\n";
+    cout << "classjoiner --next        - Prints next class info\n";
+    cout << "classjoiner --next=3      - Prints next to next to next class info \n";
+    cout << "classjoiner -j --next     - Opens next class\n";
+    cout << "classjoiner --daa=2       - Opens daa second link\n";
+    cout << "classjoiner -jp           - Opens previous class\n";
+
+}
 void classes::info_n(int num)
 {
-    int n = (num % 16);
+    int n = (num % (int)l1.size());
     if (n == 0)
     {
-        n = 16;
+        n = (int)l1.size();
     }
     std::list<class_info>::iterator it;
     int i = 1;
@@ -191,20 +226,18 @@ void classes::view()
         if (!pid)
         {
             execl("/usr/bin/printf", "printf", tmp_str.c_str(), i_str.c_str(), days[it->day].c_str(), s_str.c_str(), e_str.c_str(), (char *)0);
-            exit(EXIT_SUCCESS);
         }
         wait(NULL);
         cout << "\n";
         i++;
     }
-    
 }
 void classes::join_n(int num)
 {
-    int n = (num % 16);
+    int n = (num % (int)l1.size());
     if (n == 0)
     {
-        n = 16;
+        n = (int)l1.size();
     }
     std::list<class_info>::iterator it;
     int i = 1;
@@ -220,7 +253,7 @@ void classes::join_n(int num)
             }
             else
             {
-                cout << "Opening " << it->link << "...." << std::endl;
+                cout << "Opening " << it->link << "  ...." << std::endl;
                 cout << "CLASS INFO" << std::endl;
                 cout << "Class name: " << it->classname << std::endl;
                 printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
@@ -251,9 +284,30 @@ void classes::join_daa()
     if (!pid)
     {
         execl("/usr/bin/xdg-open", "xdg-open", str.c_str(), (char *)0);
-        exit(EXIT_SUCCESS);
     }
-    execl("/usr/bin/sleep", "sleep", "10", (char *)0);
+    else
+        execl("/usr/bin/sleep", "sleep", "10", (char *)0);
+}
+
+void classes::join_dsd()
+{
+    string str;
+    if (dsd_value == 1)
+    {
+        str = "https://meet.google.com/lookup/bxi53rg2xz?authuser=1";
+    }
+    else if (dsd_value == 2)
+    {
+        str = "https://meet.google.com/lookup/bgdvql5cu6?authuser=1";
+    }
+    cout << str;
+    pid_t pid = fork();
+    if (!pid)
+    {
+        execl("/usr/bin/xdg-open", "xdg-open", str.c_str(), (char *)0);
+    }
+    else
+        execl("/usr/bin/sleep", "sleep", "10", (char *)0);
 }
 void classes::join()
 {
@@ -286,6 +340,7 @@ void classes::join()
         {
             cout << "Cool, you don't have any classes" << std::endl;
             execl("/usr/bin/sleep", "sleep", "10", (char *)0);
+            // execl("/usr/bin/sleep", "sleep", "10", (char *)0);
         }
     }
 }
@@ -298,9 +353,6 @@ int classes::find()
     int i = 1;
     for (it = l1.begin(); it != l1.end(); ++it)
     {
-        // printf("value=%d,\n", value);
-        // printf("s_value=%d,\n", it->s_value);
-        // printf("e_value=%d,\n\n", it->e_value);
         if (value < it->s_value)
         {
             isfound = false;
@@ -320,11 +372,7 @@ int main(int argc, char **argv)
 {
     classes cse;
 
-    if (dsdid == 1)
-        cse.add_class(10, 1, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
-    else
-        cse.add_class(10, 1, 1, "Digital System Design", "https://meet.google.com/lookup/bgdvql5cu6?authuser=1");
-
+    cse.add_class(10, 1, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     cse.add_class(11, 1, 1, "Linear Algebra", "https://meet.google.com/nfn-xiwj-vpg?authuser=1");
 
     if (daalabid == 1)
@@ -332,11 +380,7 @@ int main(int argc, char **argv)
     else
         cse.add_class(15, 1, 4, "DAA Practice", "https://meet.google.com/een-aerr-sbk?authuser=1");
 
-    if (dsdid == 1)
-        cse.add_class(9, 2, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
-    else
-        cse.add_class(9, 2, 1, "Digital System Design", "https://meet.google.com/lookup/bgdvql5cu6?authuser=1");
-
+    cse.add_class(9, 2, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     cse.add_class(10, 2, 1, "Linear Algebra", "https://meet.google.com/nfn-xiwj-vpg?authuser=1");
 
     if (oopsid == 1)
@@ -344,7 +388,7 @@ int main(int argc, char **argv)
     else
         cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
 
-    cse.add_class(15, 2, 4, "DSD Practice", "https://mail.google.com/mail/u/1/#inbox");
+    cse.add_class(15, 2, 4, "DSD Practice", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     cse.add_class(9, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
 
     if (oopsid == 1)
@@ -355,10 +399,7 @@ int main(int argc, char **argv)
     cse.add_class(14, 3, 1, "DAA-Discussion", "https://meet.google.com/fmv-yypx-ofe?authuser=1");
     cse.add_class(15, 3, 3, "System Thinking of Design", "https://teams.microsoft.com/l/channel/19%3aWVZAU6AP1oGOgqofN8hfjJXHY8G551cm1BePFf5MoR41%40thread.tacv2/General?groupId=9fc411af-bdbe-4f49-af6b-2d2909390728&tenantId=be5109ea-c534-473c-af60-2054e070a0ed");
 
-    if (dsdid == 1)
-        cse.add_class(10, 4, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
-    else
-        cse.add_class(10, 4, 1, "Digital System Design", "https://meet.google.com/lookup/bgdvql5cu6?authuser=1");
+    cse.add_class(10, 4, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
 
     if (oopsid == 1)
         cse.add_class(15, 4, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
@@ -370,11 +411,7 @@ int main(int argc, char **argv)
     else
         cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/ygo-ixix-gmr?authuser=1");
 
-    if (dsdid == 1)
-        cse.add_class(11, 5, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
-    else
-        cse.add_class(11, 5, 1, "Digital System Design", "https://meet.google.com/lookup/bgdvql5cu6?authuser=1");
-
+    cse.add_class(11, 5, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     cse.add_class(14, 5, 1, "Linear Algebra Tutorial", "https://meet.google.com/wug-maeb-cfn?authuser=1");
 
     int c;
@@ -408,7 +445,7 @@ int main(int argc, char **argv)
                 {
                     if (optarg)
                     {
-                        if (atoi(optarg) < 4)
+                        if ((atoi(optarg) < 4) && (atoi(optarg) > 0))
                         {
                             cse.u_daa(atoi(optarg));
                         }
@@ -431,7 +468,7 @@ int main(int argc, char **argv)
                 {
                     if (optarg)
                     {
-                        if (atoi(optarg) < 3)
+                        if ((atoi(optarg)) < 3 && (atoi(optarg) > 0))
                         {
                             cse.u_dsd(atoi(optarg));
                         }
@@ -483,7 +520,11 @@ int main(int argc, char **argv)
             }
         }
     }
-    if (cse.ret_view())
+    if (cse.ret_help())
+    {
+        cse.help();
+    }
+    else if (cse.ret_view())
     {
         cse.view();
     }
@@ -494,6 +535,10 @@ int main(int argc, char **argv)
     else if (cse.ret_daa())
     {
         cse.join_daa();
+    }
+    else if (cse.ret_dsd())
+    {
+        cse.join_dsd();
     }
     else if (cse.ret_next() || cse.ret_previous())
     {

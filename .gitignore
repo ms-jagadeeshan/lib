@@ -11,3 +11,6 @@ class_joiner/automatic_class_joiner copy.bash
 class_joiner/link_providercopy
 class_joiner/link_providercopy.cpp
 class_joiner/automatic_class_joinercopy.bash
+class-joiner-v2/test1
+class-joiner-v2/classjoiner
+class-joiner-v2/test1.cpp
