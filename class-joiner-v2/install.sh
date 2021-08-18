@@ -156,6 +156,10 @@ ln -sf --verbose "$PWD/cjdaemon.sh" "$HOME/.local/bin/"
 if [[ "$PATH" =~ (^|:)"$HOME/.local/bin"(|/)(:|$) ]]; then
     prompt -i "$HOME/.local/bin is already added to PATH" 
     echo -e "[Desktop Entry]\nType=Application\nExec=sh -c /home/jaga_matrix/.local/bin/cjdaemon.sh\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=Class joiner Daemon\nName=Class Joiner Daemon" > $HOME/.config/autostart/cjdaemon.desktop
+    if[[ ! -d "$HOME/.local/share/icons" ]]
+    then 
+    mkdir "$HOME/.local/share/icons"
+    fi
     cp "class-joiner.png" "$HOME/.local/share/icons/class-joiner.png"
     echo -e "[Desktop Entry]\nTerminal=true\nName=Class Joiner v2\nNoDisplay=false\nExec="$HOME/.local/bin/classjoiner"\nIcon=class-joiner\nType=Application" > "$HOME/.local/share/applications/classjoiner.desktop"
     prompt -i "Desktop shotcut created successfully!!"
