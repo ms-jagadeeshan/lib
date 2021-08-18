@@ -205,7 +205,7 @@ void classes::info()
     else if (previous)
     {
         int n = find();
-        info_n(n + 1500 - previous);
+        info_n(n + (l1.size() * 100) - previous);
     }
 }
 void classes::view()
@@ -259,7 +259,18 @@ void classes::join_n(int num)
                 cout << "CLASS INFO" << std::endl;
                 cout << "Class name: " << it->classname << std::endl;
                 printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
-                execl("/usr/bin/sleep", "sleep", "10", (char *)0);
+                if (!strcmp(it->classname.c_str(), "Linear Algebra Tutorial") || !strcmp(it->classname.c_str(), "Linear Algebra"))
+                {
+                    cout << "Waiting to open google classroom for attendence..." << std::endl;
+                    time_t now = time(0);
+                    tm *loc_tm = localtime(&now);
+                    int mins = loc_tm->tm_min;
+                    int sleep_time = (95 - mins) % 60;
+                    sleep(sleep_time * 60);
+                    execl("/usr/bin/xdg-open", "xdg-open", "https://classroom.google.com/u/1/c/Mzc1MzM2MTI3MTQy", (char *)0);
+                }
+                else
+                    execl("/usr/bin/sleep", "sleep", "10", (char *)0);
             }
         }
         i++;
@@ -337,7 +348,7 @@ void classes::join()
         else if (previous)
         {
             int n = find();
-            join_n(n + 1500 - previous);
+            join_n(n + (l1.size() * 100) - previous);
         }
     }
     else
