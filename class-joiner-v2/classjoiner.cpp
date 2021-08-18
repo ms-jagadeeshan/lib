@@ -164,7 +164,6 @@ void classes::help()
     cout << "classjoiner -j --next     - Opens next class\n";
     cout << "classjoiner --daa=2       - Opens daa second link\n";
     cout << "classjoiner -jp           - Opens previous class\n";
-
 }
 void classes::info_n(int num)
 {
@@ -248,8 +247,11 @@ void classes::join_n(int num)
             pid_t pid = fork();
             if (!pid)
             {
+                if (setsid() == -1) // request a new session (job control)
+                {
+                    exit(0);
+                }
                 execl("/usr/bin/xdg-open", "xdg-open", it->link.c_str(), (char *)0);
-                exit(EXIT_SUCCESS);
             }
             else
             {
@@ -258,7 +260,6 @@ void classes::join_n(int num)
                 cout << "Class name: " << it->classname << std::endl;
                 printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
                 execl("/usr/bin/sleep", "sleep", "10", (char *)0);
-                break;
             }
         }
         i++;
@@ -283,6 +284,10 @@ void classes::join_daa()
     pid_t pid = fork();
     if (!pid)
     {
+        if (setsid() == -1) // request a new session (job control)
+        {
+            exit(0);
+        }
         execl("/usr/bin/xdg-open", "xdg-open", str.c_str(), (char *)0);
     }
     else
@@ -304,6 +309,10 @@ void classes::join_dsd()
     pid_t pid = fork();
     if (!pid)
     {
+        if (setsid() == -1) // request a new session (job control)
+        {
+            exit(0);
+        }
         execl("/usr/bin/xdg-open", "xdg-open", str.c_str(), (char *)0);
     }
     else
@@ -389,7 +398,7 @@ int main(int argc, char **argv)
         cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
 
     cse.add_class(15, 2, 4, "DSD Practice", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
-    cse.add_class(9, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
+    cse.add_class(10, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
 
     if (oopsid == 1)
         cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
