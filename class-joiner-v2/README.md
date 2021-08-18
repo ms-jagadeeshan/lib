@@ -42,6 +42,7 @@ classjoiner --help
 - And the .desktop file of cjdaemon is created in ~/.config/autostart and .desktop file of classjoiner is created in ~/.local/share/applications
 <br>
 <img src="image1.png">
+- This v2 consumes 90kb memory only
 <br>
 
 ### Credits
