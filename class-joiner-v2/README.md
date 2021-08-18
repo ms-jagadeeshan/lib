@@ -29,7 +29,7 @@ Now open terminal and change directory to lib/class-joiner-v2
 <br>
 And run this command
 ```
-sh ./install.sh
+bash ./install.sh
 ```
 ## How it works
 

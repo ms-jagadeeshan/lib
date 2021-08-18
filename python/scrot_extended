@@ -64,7 +64,7 @@ while True:
         k = k+1
     else:
         break
-classcode="pom"
+classcode="dsd"
 # if you prefer, you can change the two line below:
 if classcode != "noclass":
     output_directory = home+"/"+"college"+"/"+"2nd sem/"+"/"+"screenshot"+"/"+classcode # output directory
@@ -85,9 +85,9 @@ img_out = output_directory+"/"+filename+".png"
 
 coords = []
 if len(sys.argv) == 1:
-    if classcode == "PoM":
-        coords = ["0","135","1443","915"]
-    elif classcode == "pom":
+    if classcode == "dsd":
+        coords = ["16","05","1368","765"]
+    elif classcode == "pdom":
         coords = ["147","180","1103","820"]
     elif classcode == "Electric_Circuits":
         coords = ["0","0","1920","1080"]
