@@ -260,12 +260,12 @@ void classes::join_n(int num)
                 cout << "Class name: " << it->classname << std::endl;
                 printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
                 if (!strcmp(it->classname.c_str(), "Linear Algebra Tutorial") || !strcmp(it->classname.c_str(), "Linear Algebra"))
-                {
+                { 
                     cout << "Waiting to open google classroom for attendence..." << std::endl;
                     time_t now = time(0);
                     tm *loc_tm = localtime(&now);
                     int mins = loc_tm->tm_min;
-                    int sleep_time = (95 - mins) % 60;
+                    int sleep_time = (105 - mins) % 60;
                     sleep(sleep_time * 60);
                     execl("/usr/bin/xdg-open", "xdg-open", "https://classroom.google.com/u/1/c/Mzc1MzM2MTI3MTQy", (char *)0);
                 }
