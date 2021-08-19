@@ -260,7 +260,7 @@ void classes::join_n(int num)
                 cout << "Class name: " << it->classname << std::endl;
                 printf("Timing    : %02d:00 - %02d:00\n", it->hour, (it->hour + it->length));
                 if (!strcmp(it->classname.c_str(), "Linear Algebra Tutorial") || !strcmp(it->classname.c_str(), "Linear Algebra"))
-                { 
+                {
                     cout << "Waiting to open google classroom for attendence..." << std::endl;
                     time_t now = time(0);
                     tm *loc_tm = localtime(&now);
@@ -406,7 +406,7 @@ int main(int argc, char **argv)
     if (oopsid == 1)
         cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
     else
-        cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+        cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/cwy-grmg-tgz?authuser=1");
 
     cse.add_class(15, 2, 4, "DSD Practice", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     cse.add_class(9, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
@@ -414,7 +414,7 @@ int main(int argc, char **argv)
     if (oopsid == 1)
         cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
     else
-        cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+        cse.add_class(11, 3, 1, "Object oriented programming", "https://meet.google.com/cwy-grmg-tgz?authuser=1");
 
     cse.add_class(14, 3, 1, "DAA-Discussion", "https://meet.google.com/fmv-yypx-ofe?authuser=1");
     cse.add_class(15, 3, 3, "System Thinking of Design", "https://teams.microsoft.com/l/channel/19%3aWVZAU6AP1oGOgqofN8hfjJXHY8G551cm1BePFf5MoR41%40thread.tacv2/General?groupId=9fc411af-bdbe-4f49-af6b-2d2909390728&tenantId=be5109ea-c534-473c-af60-2054e070a0ed");
@@ -422,14 +422,14 @@ int main(int argc, char **argv)
     cse.add_class(10, 4, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
 
     if (oopsid == 1)
-        cse.add_class(15, 4, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+        cse.add_class(14, 4, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
     else
-        cse.add_class(15, 4, 1, "Object oriented programming", "https://meet.google.com/gqd-gbaf-ixq?authuser=1");
+        cse.add_class(14, 4, 1, "Object oriented programming", "https://meet.google.com/cwy-grmg-tgz?authuser=1");
 
     if (ooplabid == 1)
-        cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
+        cse.add_class(15, 4, 3, "Object oriented programming practice", "https://meet.google.com/esf-zvzw-swo?authuser=1");
     else
-        cse.add_class(16, 4, 3, "Object oriented programming practice", "https://meet.google.com/ygo-ixix-gmr?authuser=1");
+        cse.add_class(15, 4, 3, "Object oriented programming practice", "https://meet.google.com/ygo-ixix-gmr?authuser=1");
 
     cse.add_class(11, 5, 1, "Digital System Design", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
     cse.add_class(14, 5, 1, "Linear Algebra Tutorial", "https://meet.google.com/wug-maeb-cfn?authuser=1");
