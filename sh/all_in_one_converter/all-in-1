@@ -167,8 +167,8 @@ select TYPE in "${types[@]}"; do
                 read -p "Do you want to specify image height resolution(Y/n): " op
                 if [ $op == 'Y' -o $op == 'y' ]; then
                     while true ; do
-                        read -p "Enter height: " height
-                        if [ height -gt 0] ; then
+                        read -p "Enter height: " height_needed
+                        if [ height_needed -gt 0] ; then
                             break
                         fi
                     done
@@ -178,26 +178,38 @@ select TYPE in "${types[@]}"; do
                 read -p "Do you want to specify image width resolution(Y/n): " op
                 if [ $op == 'Y' -o $op == 'y' ]; then
                     while true ; do
-                        read -p "Enter width: " width
-                        if [ width -gt 0] ; then
+                        read -p "Enter width: " width_needed
+                        if [ width_needed -gt 0] ; then
                             break
                         fi
                     done
                     
                     if [ identifier -eq 1 ] ; then
-                        identifier=2
-                    else
                         identifier=3
+                    else
+                        identifier=2
                     fi
                 fi
                 
-                if [ identifier -eq 0 ] ; then
-                    
-                fi
-                height=$((height*1080/width))
-                height=$(echo $height | awk '{print int($1)}')
                 new_name=$(echo "$line" | sed 's/ //g')
-                convert "$line" -resize 1080x$height -background white -alpha remove -alpha off "${WRK_DIR}/intermediate/$new_name"
+                
+                if [ identifier -eq 0 ] ; then
+                    convert "$line" -background white -alpha remove -alpha off "${WRK_DIR}/intermediate/$new_name"
+                    elif [ identifier -eq 1 ] ; then
+                    width=$((width*height_needed/height))
+                    height=$height_needed
+                    
+                    elif [ identifier -eq 2 ] ; then
+                    height=$((height*width_needed/width))
+                    width=$width_needed
+                    elif [ identifier -eq 3 ] ; then
+                    height=$height_needed
+                    width=$width_needed
+                fi
+                width=$(echo $width | awk '{print int($1)}')
+                height=$(echo $height | awk '{print int($1)}')
+                
+                convert "$line" -resize "$width"x"$height" -background white -alpha remove -alpha off "${WRK_DIR}/intermediate/$new_name"
                 
                 prompt -s "successfully changed the resoulution(to fixed width) of $line"
             done < ${WRK_DIR}/filelist.txt

@@ -1,0 +1,140 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Dave Parrish - How to download private videos from YouTube with youtube-dl</title>
+
+        <!-- Stylesheets. -->
+        <link rel="stylesheet" type="text/css" href="Dave%20Parrish%20-%20How%20to%20download%20private%20videos%20from%20YouTube%20with%20youtube-dl_files/default.css">
+        <link rel="stylesheet" type="text/css" href="Dave%20Parrish%20-%20How%20to%20download%20private%20videos%20from%20YouTube%20with%20youtube-dl_files/syntax.css">
+
+        <!-- Metadata. -->
+        <meta name="keywords" content="daveparrish,drupal,haskell,liberty,bitcoin,linux,blog,hakyll">
+        <meta name="description" content="Dave Parrish - Hakyll blog">
+    </head>
+    <body>
+        <div id="main">
+            <div id="header">
+                <a href="https://daveparrish.net/">
+                    <img src="Dave%20Parrish%20-%20How%20to%20download%20private%20videos%20from%20YouTube%20with%20youtube-dl_files/lambda.png" alt="lambda">
+                    Dave Parrish's Blog
+                </a>
+            </div>
+            <!-- Sidebar. -->
+            <div id="sidebar">
+                <a href="https://daveparrish.net/index.html">Home</a>
+                <a href="https://daveparrish.net/about.html">About</a>
+                <a href="https://daveparrish.net/projects.html">Projects</a>
+                <a href="https://daveparrish.net/contact.html">Contact</a>
+                <a href="https://daveparrish.net/archive.html">Archive</a>
+
+            </div>
+
+            <div id="content">
+		<h1>How to download private videos from YouTube with youtube-dl</h1>
+                <div class="info">Posted on June 22, 2018</div>
+
+<hr>
+<p><strong>2020-07-30 Feedback Update</strong></p>
+<p><em>The extension <a href="https://chrome.google.com/webstore/detail/cookiestxt/njabckikapfpffapmjgojcnbfjonfjfg">cookies.txt</a> can also be used, instead of <a href="https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg">EditThisCookie</a>.
+ It may no longer be necessary to add cookies from multiple domains, 
+YouTube.com should be the only domain cookies are needed from.</em></p>
+<p><em>As an alternative to using cookies, Google now allows for <a href="https://myaccount.google.com/apppasswords">application specific passwords to bypass 2FA</a> for attempting username/password authentication when downloading a private video.</em></p>
+<p><em>I am now getting a <a href="https://github.com/ytdl-org/youtube-dl/issues/23223">DRM related error when trying to download protected content from YouTube now</a> when trying to download some videos. YMMV</em></p>
+<hr>
+<p><a href="https://rg3.github.io/youtube-dl/">youtube-dl</a> is a 
+wonderful tool for downloading videos so they can be watched offline. 
+Most of the time I only want to store a publicly accessible video. 
+Sometimes I want to access a video that is only accessible when I am 
+logged into my <a href="https://youtube.com/">YouTube</a> account. To do this was more challenging than I thought it would be, partly because youtube-dl is working through <a href="https://github.com/rg3/youtube-dl/issues">some issues</a>. The specific issues I ran into dealt with <a href="https://github.com/rg3/youtube-dl/issues/13050">two factor authentication</a> and <a href="https://github.com/rg3/youtube-dl/issues/4539">reading cookie formats</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>Here is what eventually worked for me.</p>
+<ol type="1">
+<li>Install <a href="https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg">EditThisCookie</a> plugin for <a href="https://www.google.com/chrome/">Chrome</a> (<a href="https://www.chromium.org/Home">Chromium</a> in my case)</li>
+<li>Set the cookie export format to <code>Netscape HTTP Cookie File</code></li>
+<li>Log into YouTube</li>
+<li>Export the cookies into a file for the domains <code>https://youtube.com</code>, <code>https://accounts.google.com</code> and <code>https://www.google.com</code></li>
+<li>Make sure the cookies are properly formatted with the <a href="https://curl.haxx.se/">curl tool</a></li>
+<li>Download your video using the <code>--cookies</code> flag</li>
+</ol>
+<h2 id="why-cookies">Why cookies?</h2>
+<p>I had to use <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a> because I couldn’t get the <code>--username</code> flag to work due to an issue with 2FA in youtube-dl. If 2FA authentication is not turned on then maybe <code>--username</code>
+ will work. Because of this I needed to export my cookies with 
+EditThisCookie plugin. I couldn’t find a plugin for my version of 
+Firefox (version 60.0.2).</p>
+<h2 id="editthiscookie">EditThisCookie</h2>
+<p>The first issue I had with EditThisCookie is it exported in JSON 
+format, but youtube-dl only takes Netscape format. In EditThisCookie the
+ format can be changed to <code>Netscape HTTP Cookie File</code>.</p>
+<h2 id="youtube-cookies">YouTube cookies</h2>
+<p>In order to get the cookies you need to first log into YouTube. You 
+could then inspect the page and see all the cookies loaded. If you 
+really wanted to you could then manually copy over all of the cookies 
+manually into a cookies file. I don’t know how to do this so that the 
+format is right, that is why I am using EditThisCookie and <code>curl</code>.
+ However, you will notice that YouTube uses cookies from different 
+domains which are needed for youtube-dl to work. Unfortunatly, 
+EditThisCookie will not download all the cookies from several domains 
+for a web page. You will need to manually export the cookies into a file
+ for each of the domains <code>https://youtube.com</code>, <code>https://acounts.google.com</code> and <code>https://www.google.com</code>. You should finally get a file that looks something like this:</p>
+<pre><code># Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This file was generated by EditThisCookie
+.youtube.com	FALSE	/	FALSE	1592746624.181169	APISID	xxxxxxxxx
+.youtube.com	FALSE	/	FALSE	1529675666.4735	GPS	1
+.youtube.com	FALSE	/	FALSE	1592746624.181027	HSID	xxxxx
+.youtube.com	FALSE	/	FALSE	1592746624.956381	LOGIN_INFO	xxxxx
+.youtube.com	FALSE	/	FALSE	1550712605.073926	PREF	xxxxx
+.youtube.com	FALSE	/	TRUE	1592746624.181263	SAPISID	xxxxx
+.youtube.com	FALSE	/	FALSE	1592746624.180932	SID	xxxxx
+.youtube.com	FALSE	/	TRUE	1592746624.181105	SSID	xxxxxx
+.youtube.com	FALSE	/	FALSE	1531743283.040211	VISITOR_INFO1_LIVE xxxxx
+.youtube.com	FALSE	/	FALSE	0	YSC	xxxxx
+
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This file was generated by EditThisCookie
+.google.com	FALSE	/	FALSE	1592746624.009486	APISID	xxxxx
+.google.com	FALSE	/	FALSE	1592746624.009335	HSID	xxxxx
+.google.com	FALSE	/	FALSE	1545488676.021505	NID	xxxxxx
+.google.com	FALSE	/	TRUE	1592746624.009559	SAPISID	xxxxx
+.google.com	FALSE	/	FALSE	1592746624.009103	SID	xxxxxx
+.google.com	FALSE	/	FALSE	1537454702.826293	SIDCC	xxxxxx
+.google.com	FALSE	/	TRUE	1592746624.009422	SSID	xxxxxx
+accounts.google.com	TRUE	/	TRUE	1592746624.009627	xxxxx
+accounts.google.com	TRUE	/	TRUE	1592746624.106059	GAPS	xxxxx
+accounts.google.com	TRUE	/	TRUE	1592746624.009204	LSID	xxxxx
+accounts.google.com	TRUE	/	TRUE	1801458753.849165	SMSV	xxxxxx
+
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This file was generated by EditThisCookie
+.google.com	FALSE	/	FALSE	1592746624.009486	APISID	xxxxx
+.google.com	FALSE	/	FALSE	1592746624.009335	HSID	xxxxx
+.google.com	FALSE	/	FALSE	1545488676.021505	NID	xxxxx
+.google.com	FALSE	/	TRUE	1592746624.009559	SAPISID	xxxxx
+.google.com	FALSE	/	FALSE	1592746624.009103	SID	xxxxx
+.google.com	FALSE	/	FALSE	1537454702.826293	SIDCC	xxxxxx
+.google.com	FALSE	/	TRUE	1592746624.009422	SSID	xxxxxx</code></pre>
+<h2 id="youtube-dl-cookie-parser">youtube-dl cookie parser</h2>
+<p>There is still more work to be done on the cookies file in order for it to work with youtube-dl. Because <a href="https://github.com/rg3/youtube-dl/issues/4539">youtube-dl cannot parse the format exported from EditThisCookie</a>, the cookie file needs to be run through <code>curl</code> like this:</p>
+<p><code>curl -b cookiefile.txt --cookie-jar newcookiefile.txt 'https://youtube.com'</code></p>
+<p>That will create a new <code>newcookiefile.txt</code> which can be used with youtube-dl.</p>
+<h2 id="finally">Finally</h2>
+<p>youtube-dl can now be used to download the private videos by using the <code>--cookies</code> flag like so:</p>
+<p><code>youtube-dl --cookies=newcookiefile.txt https://youtu.be/Q-xxxx-xxxx</code></p>
+<p>Yay! 🍪</p>
+
+<em>Modified: July 30, 2020 - 03:09:08 PM</em>
+
+            </div>
+
+            <div id="footer">
+                Site proudly generated by <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.<br>
+                <a href="https://github.com/dmp1ce/daveparrish.net">Source code</a> hosted on <a href="https://github.com/">Github</a>.<br>
+                Generated HTML hosted on <a href="https://vultr.com/">Vultr</a> and maintained with <a href="https://www.ansible.com/">Ansible</a>.<br>
+            </div>
+        </div>
+    
+
+</body></html>
