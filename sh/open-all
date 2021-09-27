@@ -1,0 +1,80 @@
+#!/bin/bash
+
+CDEF=" \033[0m"      # default color
+CCIN=" \033[0;36m"   # info color
+CGSC=" \033[0;32m"   # success color
+CRER=" \033[0;31m"   # error color
+CWAR=" \033[0;33m"   # waring color
+b_CDEF=" \033[1;37m" # bold default color
+b_CCIN=" \033[1;36m" # bold info color
+b_CGSC=" \033[1;32m" # bold success color
+b_CRER=" \033[1;31m" # bold error color
+b_CWAR=" \033[1;33m" # bold warning color
+
+option() {
+    printf "Enter q to quit or c to continue: "
+    read op
+    if [ $op == 'q' ]; then
+        exit
+    fi
+}
+# echo like ...  with  flag type  and display message  colors
+prompt() {
+    case ${1} in
+    "-s" | "--success")
+        echo -e "${b_CGSC}${@/-s/}${CDEF}"
+        ;; # print success message
+    "-e" | "--error")
+        echo -e "${b_CRER}${@/-e/}${CDEF}"
+        ;; # print error message
+    "-w" | "--warning")
+        echo -e "${b_CWAR}${@/-w/}${CDEF}"
+        ;; # print warning message
+    "-i" | "--info")
+        echo -e "${b_CCIN}${@/-i/}${CDEF}"
+        ;; # print info message
+    *)
+        echo -e "$@"
+        ;;
+    esac
+}
+
+printf -v starting_roll_no "%02d" 1
+printf -v ending_roll_no "%02d" 99
+while getopts s:e: flag; do
+    case "${flag}" in
+    s) starting_roll_no=${OPTARG} ;;
+    e) ending_roll_no=${OPTARG} ;;
+    esac
+done
+
+echo "Enter the directory to work with(absolute or relative path): "
+read dir
+#echo $dir
+WSD=$(realpath $dir)
+#echo $WSD
+if [ ! -d "$WSD" ]; then
+    prompt -e "Directory does not exists, Try again..."
+    exit
+fi
+
+cd "$WSD"
+current=$starting_roll_no
+
+while [ $starting_roll_no -lt $ending_roll_no ]; do
+    printf -v starting_roll_no "%02d" $(($starting_roll_no))
+    file="$starting_roll_no*"
+    ls -1 $file.mkv >./tmp.txt 2>/dev/null
+    ls -1 $file.webm >>./tmp.txt 2>/dev/null
+    ls -1 $file.mp4 >>./tmp.txt 2>/dev/null
+    while read -r line; do
+        prompt -i $starting_roll_no
+        echo "Opening $line"
+        vlc "$line" 1>/dev/null 2>/dev/null
+        # gnome-terminal --title="$line" --working-directory="$WSD" -- vlc "$line"
+        #  option </dev/tty
+    done <./tmp.txt
+    starting_roll_no=$(($current + 1))
+    current=$(($current + 1))
+done
+
