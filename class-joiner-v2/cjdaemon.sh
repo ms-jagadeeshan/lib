@@ -14,7 +14,7 @@ else
     sleep "$count"m
 fi
 while true; do
-    classjoiner
-    # DISPLAY=$DISPLAY gnome-terminal -- "$HOME/.local/bin/classjoiner"
+    #classjoiner
+    DISPLAY=$DISPLAY gnome-terminal -- "$HOME/.local/bin/classjoiner"
     sleep 60m
 done
