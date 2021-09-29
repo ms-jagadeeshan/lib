@@ -1,0 +1,91 @@
+1) Buy a domain
+
+
+2) Buy a vps or self host 
+And if you have domain, go to your domain registerar and point your domain to your server ip
+
+3)Setting up nginx server
+
+Login to your server using ssh,
+
+$ ssh root@example.org
+
+or if you don't have domain then enter ip address
+$ ssh root@xx.xx.xxx.xxx 
+
+Then it will prompt for password, enter password that's it
+
+Install nginx,
+$ apt install nginx
+
+The configuration files for nginx are stored in /etc/nginx 
+In that go to /etc/nginx/sites-available and create one .conf file for your website
+$ cd /etc/nginx/sites-available
+
+You can use vi or nano
+$ vi mywebsite.conf
+Here is the sample
+---
+server {
+        listen 80 ;
+        listen [::]:80 ;
+        server_name 173.199.118.130 ;
+        root /var/www/mywebsite ;
+        index index.html index.htm index.nginx-debian.html ;
+        location / {
+                try_files $uri $uri/ =404 ;
+        }
+}
+---
+
+This is where, your website going to live
+'root /var/www/mywebsite'
+
+Let's create it
+$ mkdir /var/www/mywebsite
+
+'index index.html index.htm index.nginx-debian.html ;'
+It will search for these files in your /var/www/mywebsite
+
+Let's create index.html
+$ vi index.html
+Sample html
+---
+<!DOCTYPE html>
+<h1> MY Website </h1>
+<p> That's it, we almost done</p>
+---
+
+When you notice we have created our mywebsite.conf file in the folder called 'sites-available' 
+Let's make a sym link of that to folder 'sites-enabled'
+$ ln -s /etc/nginx/sites-available/mywebsite.conf /etc/nginx/sites-enabled/
+
+Now reload you server to update it to new config file
+$ systemctl reload nginx
+
+By default, it firewall blocks all ports, so now allow port 80 and 443
+$ ufw allow 80
+$ ufw allow 443
+
+That's it open your website using your domain or ip
+
+4)Http to https
+$ apt install python3-certbot-nginx
+
+$ certbot --nginx
+Now it will ask you, to enter your email to send the renewal and security notice(We)
+
+
+
+
+
+
+
+
+
+
+MICROS
+i)Change hostname
+  Edit /etc/hostname file, and reboot
+  
+ii)
