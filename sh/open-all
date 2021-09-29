@@ -62,11 +62,17 @@ cd "$WSD"
 current=$starting_roll_no
 
 while [ $starting_roll_no -lt $ending_roll_no ]; do
+   
     printf -v starting_roll_no "%02d" $(($starting_roll_no))
-    file="$starting_roll_no*"
+    file="*$starting_roll_no*"
+    file2="*$starting_roll_no"
+    
     ls -1 $file.mkv >./tmp.txt 2>/dev/null
     ls -1 $file.webm >>./tmp.txt 2>/dev/null
     ls -1 $file.mp4 >>./tmp.txt 2>/dev/null
+    ls -1 $file2.mkv >./tmp.txt 2>/dev/null
+    ls -1 $file2.webm >>./tmp.txt 2>/dev/null
+    ls -1 $file2.mp4 >>./tmp.txt 2>/dev/null
     while read -r line; do
         prompt -i $starting_roll_no
         echo "Opening $line"

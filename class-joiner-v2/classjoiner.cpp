@@ -414,7 +414,7 @@ int main(int argc, char **argv)
         cse.add_class(14, 2, 1, "Object oriented programming", "https://meet.google.com/cwy-grmg-tgz?authuser=1");
 
     cse.add_class(15, 2, 4, "DSD Practice", "https://meet.google.com/lookup/bxi53rg2xz?authuser=1");
-    cse.add_class(9, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
+    cse.add_class(12, 3, 1, "Linear Algebra Tutorial", "https://meet.google.com/zpx-xepy-dgi?authuser=1");
     cse.add_class(14, 3, 1, "DAA-Discussion", "https://meet.google.com/fmv-yypx-ofe?authuser=1");
     cse.add_class(15, 3, 3, "System Thinking of Design", "https://teams.microsoft.com/l/channel/19%3aWVZAU6AP1oGOgqofN8hfjJXHY8G551cm1BePFf5MoR41%40thread.tacv2/General?groupId=9fc411af-bdbe-4f49-af6b-2d2909390728&tenantId=be5109ea-c534-473c-af60-2054e070a0ed");
 
