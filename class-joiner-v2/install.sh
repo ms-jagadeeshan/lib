@@ -33,7 +33,7 @@ prompt() {
 }
 
 install() {
-    echo -e "[Desktop Entry]\nType=Application\nExec=sh -c /home/jaga_matrix/.local/bin/cjdaemon.sh\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=Class joiner Daemon\nName=Class Joiner Daemon" >"$HOME/.config/autostart/cjdaemon.desktop"
+    echo -e "[Desktop Entry]\nType=Application\nExec=sh -c $HOME/.local/bin/cjdaemon.sh\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=Class joiner Daemon\nName=Class Joiner Daemon" >"$HOME/.config/autostart/cjdaemon.desktop"
     if [[ ! -d "$HOME/.local/share/icons" ]]; then
         mkdir "$HOME/.local/share/icons"
     fi
