@@ -33,6 +33,7 @@ prompt() {
 }
 
 install() {
+    mkdir -p --verbose $HOME/.config/autostart
     echo -e "[Desktop Entry]\nType=Application\nExec=sh -c $HOME/.local/bin/cjdaemon.sh\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=Class joiner Daemon\nName=Class Joiner Daemon" >"$HOME/.config/autostart/cjdaemon.desktop"
     if [[ ! -d "$HOME/.local/share/icons" ]]; then
         mkdir "$HOME/.local/share/icons"
@@ -41,7 +42,8 @@ install() {
     echo -e "[Desktop Entry]\nTerminal=true\nName=Class Joiner v2\nNoDisplay=false\nExec=\"$HOME/.local/bin/classjoiner\"\nIcon=class-joiner\nType=Application" >"$HOME/.local/share/applications/classjoiner.desktop"
     prompt -i "Desktop shotcut created successfully!!"
     prompt -s "That's it everything oK, use 'classjoiner --help' for more details"
-
+    bash $HOME/.local/bin/cjdaemon.sh &
+    disown -a
 }
 
 prompt -i "Welcome, This is one time setup for class joiner\n"
@@ -173,7 +175,7 @@ if [[ "$PATH" =~ (^|:)"$HOME/.local/bin"(|/)(:|$) ]]; then
     install
 
 else
-    shell=$(echo $0)
+	shell=$(basename $(echo $SHELL))
     if [ "$shell" = "bash" ]; then
         echo 'export PATH=$HOME/.local/bin:$PATH' >>~/.bashrc
         prompt -i "Adding $HOME/.local/bin to PATH variable"
